@@ -1,0 +1,31 @@
+<%- include('partials/header.ejs'); -%>
+
+ 
+ <%- include('partials/navigation.ejs'); -%>
+
+<div class="container p-5">
+    <h1 class="display-4">
+        Contact Me
+    </h1>
+<p>Clayton Rapiejko</p>
+<p>905-924-1902</p>
+<p>claytonrapiejko@gmail.com</p>
+
+<div class="container">
+  <form action="/home">
+
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="First...">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Last...">
+
+    <label for="subject">Subject</label>
+    <textarea id="subject" name="subject" placeholder="Message..." style="height:200px"></textarea>
+
+    <input type="submit" value="Submit">
+
+  </form>
+</div>
+
+ <%- include('partials/footer'); -%>
