@@ -1,27 +1,25 @@
-var express = require('express');
-var router = express.Router();
+// modules required for routing
+let express = require("express");
+let router = express.Router();
 
+// define the game model
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Home Page' });
+/* GET home page */
+router.get("/", (req, res, next) => {
+  res.render("../views/Content/index.ejs", {
+    title: "Home",
+  });
 });
 
-/* GET home page. */
-router.get('/home', function(req, res, next) {
-  res.render('index', { title: 'Home Page' });
+router.get("/explorePage", (req, res, next) => {
+  res.render("../views/Explore/explore.ejs", {
+    title: "Home",
+  });
 });
 
-/* GET Services page. */
-router.get('/surveys', function(req, res, next) {
-  res.render('surveys', { title: 'Surveys' });
+router.get("/mySurveys", (req, res, next) => {
+  res.render("../views/mySurveys/mySurveys.ejs", {
+    title: "Home",
+  });
 });
-
-/* GET Contact page. */
-router.get('/contact', function(req, res, next) {
-  res.render('contact', { title: 'Contact Us' });
-});
-
-
-
 module.exports = router;

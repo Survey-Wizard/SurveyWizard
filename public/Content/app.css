@@ -1,35 +1,89 @@
-/* Custom css */
+/* navBar */
 
-
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.navBar-options {
+    padding: 10px;
+    border: 1px solid red;
+    margin-left: auto;
+    margin-right: 20px;
+    width: 20%;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.profile {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: auto auto;
 }
 
-h3 {text-align: center;}
-
-
-/* form */
-input[type=text], select, textarea {
-  width: 100%; 
-  padding: 12px;  
-  border: 1px solid rgb(204, 204, 204);
-  margin-top: 6px;
-  margin-bottom: 16px;
+.logIn-btn {
+    margin-top: 5px;
+}
+.create-survey {
+    margin-top: 15px;
+    margin-left: 5px;
+}
+.logo {
+ 
+    width: 140px;
+    height: 60px;
+    margin-top: -5px;
+}
+.nav-link {
+    margin-top: 10px;
+  
 }
 
-input[type=submit] {
-  background-color: #863a3a;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+/* main container */
+
+#main-container {
+    border: 1px solid black;
+    max-width: 90%;
+    height: fit-content;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+.homePage-container {
+    height: 100%;
+    border: 2px solid orange
+}
+#container-row-top {
+    border: 1px solid black;
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 150px;
+    margin-top: 100px;
 }
 
-.container {
-  border-radius: 5px;
-  background-color: #F7C537;
-  padding: 20px;
+.row {
+    margin-top: 200px;
+    border: 1px solid black;
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 450px;
+}
+
+#container-col {
+    border: 1px solid red;
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+
+}
+.left-side-container {
+    border: 2px solid blue;
+    margin-right: 10px;
+}
+.right-side-container {
+    border: 2px solid green;
+}
+/* Footer */
+
+.footer {
+    position: relative;
+  
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 60px;
+    background-color: #f8f9fa!important;
 }
