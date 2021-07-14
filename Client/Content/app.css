@@ -18,10 +18,6 @@
 .logIn-btn {
     margin-top: 5px;
 }
-.create-survey {
-    margin-top: 15px;
-    margin-left: 5px;
-}
 .logo {
  
     width: 140px;
@@ -31,6 +27,18 @@
 .nav-link {
     margin-top: 10px;
   
+}
+
+
+.createSurvey-btn {
+    position: relative;
+    top: 20px;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 10px;
+    text-decoration: none;
+    color: grey;
 }
 
 /* main container */
@@ -86,4 +94,41 @@
     grid-template-columns: auto auto;
     padding: 60px;
     background-color: #f8f9fa!important;
+}
+
+/* create survey page */
+
+#wrapper {
+    border: 1px solid red;
+    padding: 10px;
+   
+}
+.createSurvey-container {
+border: 1px solid black;
+padding: 10px;
+
+}
+.survey-info {
+    border: 1px solid green;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.survey-format {
+    border: 1px solid orange;
+    height: 100px;
+    padding: 10px;
+}
+
+.createsurvey-btn-wrapper {
+    border: 1px solid pink;
+    padding: 10px;
+    height: 50px;
+}
+.create-survey {
+    text-decoration: none;
+    color: grey;
+    border: 1px solid black;
+    border-radius: 5px;
+    float: right;
 }
