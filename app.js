@@ -8,7 +8,7 @@ const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const morgan_1 = __importDefault(require("morgan"));
-let indexRouter = require("./routes/index");
+const index_1 = __importDefault(require("./routes/index"));
 const app = express_1.default();
 exports.default = app;
 app.set("views", path_1.default.join(__dirname, "views"));
@@ -19,7 +19,7 @@ app.use(express_1.default.urlencoded({ extended: false }));
 app.use(cookie_parser_1.default());
 app.use(express_1.default.static(path_1.default.join(__dirname, "public")));
 app.use(express_1.default.static(path_1.default.join(__dirname, "node_modules")));
-app.use("/", indexRouter);
+app.use("/", index_1.default);
 app.use(function (req, res, next) {
     next(http_errors_1.default(404));
 });
