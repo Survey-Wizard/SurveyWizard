@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
+    "@popperjs/core": "^2.9.2",
     "bootstrap": "^5.0.2",
     "cookie-parser": "^1.4.5",
     "debug": "^4.3.2",
@@ -19,6 +20,7 @@
     "popper.js": "^1.16.1"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.0.17",
     "@types/cookie-parser": "^1.4.2",
     "@types/debug": "^4.1.6",
     "@types/ejs": "^3.0.7",
