@@ -6,7 +6,7 @@ import logger from 'morgan';
 
 let indexRouter = require("./routes/index");
 
-let app = express();
+const app = express();
 export default app;
 
 // view engine setup
@@ -28,7 +28,7 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (err:createError.HttpError, req:express.Request, res:express.Response, next:express.NextFunction) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
