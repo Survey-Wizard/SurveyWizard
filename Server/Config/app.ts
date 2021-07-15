@@ -3,10 +3,6 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import mongoose from 'mongoose';
-import passport from 'passport';
-import passportLocal from 'passport-local';
-import session from 'express-session';
 
 import indexRouter from "../Routes/index";
 
@@ -40,16 +36,6 @@ app.use(function (err:createError.HttpError, req:express.Request, res:express.Re
   // render the error page
   res.status(err.status || 500);
   res.render("error");
-});
-
-import * as DBConfig from "./db";
-mongoose.connect(DBConfig.RemoteURI, {useNewUrlParser: true, useUnifiedTopology: true});
-
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error'));
-db.once('open', function()
-{
-  console.log(`Connected to MongoDB at: ${DBConfig.HostName}`);
 });
 
 //module.exports = app;
