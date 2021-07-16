@@ -132,3 +132,46 @@ padding: 10px;
     border-radius: 5px;
     float: right;
 }
+
+/* survey editor / create question */
+
+#createQuestion-container {
+    border: 1px solid black;
+   padding: 10px;
+   
+}
+.add-logo {
+    margin-top: 20px;
+}
+.survey-title {
+    margin-top: 30px;
+}
+.survey-header {
+    border: 1px solid red;
+   
+    margin-bottom: 40px;
+}
+.survey-title {
+    border: 1px solid green;
+}
+.create-question {
+    border: 1px solid orange;
+}
+.question-container {
+    border: 1px solid red;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.addNewQuestion {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+.finish-editing {
+    width: auto;
+    border: 1px solid black;
+     text-align: right;
+    margin-right: 20px;
+}
