@@ -6,26 +6,10 @@ const SurveySchema = new Schema
     surveyName: { type: String, required: true },
   surveyCategory: { type: String, required: true },
   publicValue: { type: String, required: true },
-
   surveyType: { type: String, required: true },
 
-  questions: [
-    {
-      SurveyQuestion: { type: String, required: true },
-    },
-    {
-      questionTitle: { type: String, required: true },
-    },
-    {
-      questionTitle: { type: String, required: true },
-    },
-    {
-      questionTitle: { type: String, required: true },
-    },
-    {
-      questionTitle: { type: String, required: true },
-    },
-  ],
+
+  questions: [String],
 
     active: Boolean,
     lifeSpan: {
