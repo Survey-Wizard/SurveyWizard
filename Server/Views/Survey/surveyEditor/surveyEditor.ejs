@@ -20,9 +20,7 @@
 
         <h3 class="survey-title">Survey Title</h3>
       </div>
-      <div class="create-question" id="create-question">
-
-    </div>
+       
       <div class="addNewQuestion">
         <button class="newQuestion-btn" id="newQuestion-btn" onclick={handleDisplayQuestions()}
           
@@ -30,9 +28,13 @@
           Add new Question
         </button>
       </div>
+      <form action="/surveyEditor" method="post"  id="create-question">
+  
+    
       <div class="finish-editing">
-        <button class="done-btn">Done</button>
+         <button type="submit" class="add-question"> Submit </button>
       </div>
+      </form>
   </body>
 </html>
 <%- include('../../Partials/footer/footer.ejs'); %>
