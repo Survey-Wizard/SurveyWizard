@@ -15,5 +15,3 @@ function handleDisplayQuestions() {
 //     let newQuestion = `<div class='question-container' id=${i}> <h2 class='question-number'>Q${i}</h2><input class='question-box'/><select name='surveyType' id='cars'><option value='Survey Category'>Question Type</option><option value='Community or volunteer Feedback'>Multiple Choice</option><option value='Customer Feedback'>Radio Buttons</option> <option value='Concept Production'>Text Box</option> <option value='Employee Engagement'>Star Rating</option></select></div>`;
 //     questionContainer.innerHTML = newQuestion;
 //     questionContainer.append(newQuestion);
-
-//test
