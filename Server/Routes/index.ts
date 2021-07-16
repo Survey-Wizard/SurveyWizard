@@ -3,6 +3,8 @@ import express from "express";
 const router = express.Router();
 export default router;
 
+let SurveyQuestion = require('../Models/survey');
+
 // define the game model
 
 /* GET home page */
@@ -39,6 +41,10 @@ router.get("/surveyEditor", (req, res, next) => {
     title: "Home",
   });
 });
+
+
+
+
 
 
 
