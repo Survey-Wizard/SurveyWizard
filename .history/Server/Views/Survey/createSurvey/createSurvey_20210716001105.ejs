@@ -1,0 +1,69 @@
+<%- include('../../Partials/header/header.ejs'); %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+
+    <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/Content/app.css" />
+  </head>
+
+  <body class="createSurvey-body">
+    <div class="container" id="wrapper">
+      <div class="createSurvey-container">
+        <header class="create-header">Name Your Survey</header>
+        <form action="/createSurvey" method="post">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="NameTextField"
+              placeholder="Survey Name"
+              name="title"
+              required
+            />
+
+            <select name="surveyType" id="cars">
+              <option value="Survey Category">Survey Category</option>
+              <option value="Community or volunteer Feedback">Community or volunteer Feedback</option>
+              <option value="Customer Feedback">Customer Feedback</option>
+              <option value="Concept Production">Concept Production</option>
+              <option value="Employee Engagement">Employee Engagement</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <p>Would you like your Survey to be public?</p>
+
+            <input type="radio" id="html" name="publicValue" value="true" />
+            <label for="html">Yes, Public</label>
+            <input type="radio" id="css" name="publicValue" value="false" />
+            <label for="css">No, Private</label>
+          </div>
+          <div class="form-group">
+            <p class="surveyFormat-text">Choose a format:</p>
+            <div class="survey-format">
+              <p class="surveyFormat-secondary-text">Classic</p>
+              <p class="surveyFormat-secondary-text">
+                Show all Survey questions on the page at once
+              </p>
+          </div>
+          
+          <div class="createsurvey-btn-wrapper">
+            <button type="submit" class="create-survey"><a href="/surveyEditor"></a>Create Survey</button>
+          </div>
+        </form>
+      </div>
+      </div>
+  
+    </div>
+  </body>
+</html>
+
+<%- include('../../Partials/footer/footer.ejs'); %>
