@@ -29,8 +29,16 @@ router.get("/explorePage", (req, res, next) => {
     });
 });
 router.get("/mySurveys", (req, res, next) => {
-    res.render("../Views/mySurveys/mySurveys.ejs", {
-        title: "Home",
+    survey_1.default.find((err, surveys) => {
+        if (err) {
+            return console.log(err);
+        }
+        else {
+            res.render("../Views/mySurveys/mySurveys.ejs", {
+                title: "Home",
+                survey: surveys
+            });
+        }
     });
 });
 router.get("/createSurvey", (req, res, next) => {

@@ -26,9 +26,18 @@ router.get("/explorePage", (req, res, next) => {
 
 /*GET mySurveys page*/
 router.get("/mySurveys", (req, res, next) => {
-  res.render("../Views/mySurveys/mySurveys.ejs", {
-    title: "Home",
-  });
+  Survey.find((err, surveys) => {
+    if(err) {
+      return console.log(err);
+    }
+    else {
+      res.render("../Views/mySurveys/mySurveys.ejs", {
+        title: "Home",
+        survey: surveys
+      });
+    }
+  })
+ 
 });
 
 /*GET createSurvey page*/
@@ -79,7 +88,7 @@ try {
   let QuestionTitle = req.body.questonTitle;
   let surveyQuestionType = req.body.surveyQuestionType;
   
-  const buildMap = (QuestionTitle, surveyQuestionType) => {
+  const buildMap = (QuestionTitle:any, surveyQuestionType:any) => {
     const map = new Map();
     for(let i = 0; i < QuestionTitle.length; i++){
       map.set(QuestionTitle[i], surveyQuestionType[i]);

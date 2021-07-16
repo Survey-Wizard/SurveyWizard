@@ -175,3 +175,23 @@ padding: 10px;
      text-align: right;
     margin-right: 20px;
 }
+
+/* my survey page */
+
+#table-container {
+    border: 1px solid black;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    
+}
+
+.button-container {
+    padding: 10px;
+    
+}
+
+.create-survey-btn {
+    margin-left: 180px;
+}

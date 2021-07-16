@@ -10,7 +10,7 @@ const SurveySchema = new Schema
 
 
   questions: [String],
-
+    respones: {type: String},
     active: Boolean,
     lifeSpan: {
         type: Date,
