@@ -20,20 +20,30 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Answer</th>
+                    <th scope="col">Answer this survey!</th>
                     
                 </tr>
             </thead>
             <tbody>
                 <% for(let count=0; count < survey.length; count++) { %>
                     <tr>
-                        <th scope="row"><%= count + 1 %></th>
+                        <td>
+                            <%= survey[count].surveyName %>
+                        </td>
+                        <td class="text-center">$<%= survey[count].lifeSpan %>
+                        </td>
+                        <td class="text-center">
+                            <%= survey[count].respones %>
+                        </td>
+                        <td class="text-center">COllect results</td>
+                        <td class="text-center"><button>Analyize</button></td>
+                        <td class="text-center"><button>Share</button></td>
+                        <td class="text-center"><a href="/survey/edit/<%= survey[count]._id %>" class="btn btn-primary btn-sm edit"> Edit</a></td>
 
-                        <td><%= survey[count].surveyName %></td>
-
-                        
-                        <td class="text-center"><button>Answer this survey!</button></td>
-                        
+                        <td class="text-center"><button type="button" class="delete-btn" data-toggle="modal"
+                                data-target="#DeleteContactModal"
+                                onclick="document.getElementById('id01').style.display='block'"
+                                id="<%= survey[count]._id %>">Delete Survey</button></td>
 
 
                     </tr>

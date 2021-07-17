@@ -1,37 +1,32 @@
 <%- include('../Partials/header/header.ejs'); %>
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!--CSS Section-->
-        <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
-        <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
-        <link rel='stylesheet' href='/Content/app.css' />
-
-    </head>
-
-    <body>
-        <table class="table" id="table-container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--CSS Section-->
+    <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
+    <link rel='stylesheet' href='/Content/app.css' />
+    
+</head>
+<body>
+    <center><h1>These are the Active Forms</h1></center>
+    
+    
+    <table class="table" id="table-container">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Modified Date</th>
-                    <th scope="col">Responces</th>
-                    <th scope="col">Collect</th>
-                    <th scope="col">Analyze</th>
-                      <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">Answer this survey!</th>
+                    
                 </tr>
             </thead>
             <tbody>
                 <% for(let count=0; count < survey.length; count++) { %>
                     <tr>
-                        <th scope="row"><%= count + 1 %></th>
                         <td>
                             <%= survey[count].surveyName %>
                         </td>
@@ -73,15 +68,18 @@
                             <%} %>
             </tbody>
         </table>
-        <div class="button-container">
-            <button class="create-survey-btn"> + Create Survey </button>
-        </div>
 
-        <!--JavaScript Section-->
-        <script src="/jquery/dist/jquery.min.js"></script>
-        <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="/Scripts/app.js"></script>
-    </body>
 
-    </html>
-    <%- include('../Partials/footer/footer.ejs'); %>
+
+
+
+
+
+
+    <!--JavaScript Section-->
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/Scripts/app.js"></script>
+</body>
+</html>
+<%- include('../Partials/footer/footer.ejs'); %>
