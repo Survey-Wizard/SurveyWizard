@@ -50,8 +50,14 @@ router.get("/survey/edit/:id", (req, res, next) => __awaiter(void 0, void 0, voi
     let id = req.params.id;
     console.log("Editing Survey with id of:", id);
     let survey = yield survey_1.default.findById(id);
-    res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
-        survey: survey
+    let surveyQuestions = survey.questions;
+    surveyQuestions.map((question, index) => {
+        console.log(question);
+        res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
+            survey: survey,
+            questions: question,
+            index: index
+        });
     });
 }));
 router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

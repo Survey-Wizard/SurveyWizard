@@ -12,10 +12,19 @@
 
   <body>
     <div class="container" id="editQuestions-container">
-      
-        <% for(let count=0; count <= survey.questions.length; count++) { %>
+    
+          <h2 class='question-number'>Question</h2>
+          <input class='question-box' name="questonTitle" placeholder="<%= questions[0] %>"/>
+
+          <select name='surveyQuestionType' id='surveyType'>
+          <option value='Survey Category'><%= questions[1] %></option>
+          <option value='Multiple-Choice'>Multiple Choice</option>
+          <option value='Radio-Buttons'>Radio Buttons</option> 
+          <option value='Text-Box'>Text Box</option> 
+          <option value='Star-Rating'>Star Rating</option>
+          
+          </select>
         
-        <%}%>
     
     </div>
   </body>
