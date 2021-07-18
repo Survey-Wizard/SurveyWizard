@@ -12,12 +12,49 @@
 
   <body>
     <div class="container" id="editQuestions-container">
+    <form class="form" method="post" id="editBook-form">
+    <div class="surveyTitle-info">
+       <div class="container" id="editQuestions-container">
+    <form class="form" method="post" id="editBook-form">
+    <div class="surveyTitle-container">
+      <form action="/createSurvey" method="post">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="NameTextField"
+              placeholder="Survey Name"
+              name="title"
+              required
+            />
+
+            <select name="surveyType" id="cars">
+              <option value="Survey Category">Survey Category</option>
+              <option value="Community or volunteer Feedback">Community or volunteer Feedback</option>
+              <option value="Customer Feedback">Customer Feedback</option>
+              <option value="Concept Production">Concept Production</option>
+              <option value="Employee Engagement">Employee Engagement</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <p>Would you like your Survey to be public?</p>
+
+            <input type="radio" id="html" name="publicValue" value="true" />
+            <label for="html">Yes, Public</label>
+            <input type="radio" id="css" name="publicValue" value="false" />
+            <label for="css">No, Private</label>
+          </div>
+        </form>
+    
+    </div>
+    </div>
     <% surveyQuestions.map((question, index) => { %>
+     
   <h2 class='question-number'>Question <%= index + 1 %></h2>
       <input class='question-box' name="questonTitle" placeholder="<%=question[0] %>"/>
       
       <select name='surveyQuestionType' id='surveyType'>
-      <option value='Survey Category'><%=question[1] %></option>
+      <option value=<%=question[1] %>><%=question[1] %></option>
       <option value='Multiple-Choice'>Multiple Choice</option>
       <option value='Radio-Buttons'>Radio Buttons</option> 
       <option value='Text-Box'>Text Box</option> 
@@ -25,7 +62,10 @@
       </select>
 
    <% }) %>
-    
+    <div class="submit-edit">
+      <button type="submit">Edit Survey</button>
+    </div>
+    </form>
     </div>
   </body>
 

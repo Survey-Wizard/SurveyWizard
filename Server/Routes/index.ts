@@ -57,6 +57,48 @@ router.get("/survey/edit/:id", async(req, res, next) => {
 
 
 });
+
+router.post("/survey/edit/:id", (req, res, next) => {
+ let id = req.params.id;
+ let surveyName = req.body.title;
+  let surveyType = req.body.surveyType;
+  let publicValue = req.body.publicValue;
+ let questonTitle = req.body.questonTitle;
+  let surveyQuestionType = req.body.surveyQuestionType;
+
+ console.log("POST VALUES", questonTitle, surveyQuestionType, surveyName, surveyType, publicValue)
+
+ const buildMap = (QuestionTitle: any, surveyQuestionType: any) => {
+  const map = new Map();
+  for(let i = 0; i < QuestionTitle.length; i++){
+    map.set(questonTitle[i], surveyQuestionType[i]);
+ };
+ return map;
+}
+let SurveyQuestions = [...buildMap(questonTitle, surveyQuestionType)];
+  function renderNewQuestions() {
+   return SurveyQuestions.map((question, index) => {
+      return question;
+      })
+  }
+let updatedQuestion = new Survey ({
+  "_id": id,
+  "surveyName": surveyName,
+  "surveyCategory": surveyType,
+  "publicValue": publicValue,
+  "surveyType": surveyQuestionType,
+  "questions": renderNewQuestions()
+})
+Survey.updateOne({_id: id}, updatedQuestion, (err) => {
+  console.log("UPDATED QUESTION")
+  res.redirect("/mySurveys")
+})
+
+});
+
+
+
+
 router.post("/createSurvey", async(req, res, next) => {
   console.log("THIS IS THE POST");
   try  {
@@ -95,6 +137,7 @@ console.log("post for edit")
 
 try {
   res.redirect('/surveyEditor')
+
   let QuestionTitle = req.body.questonTitle;
   let surveyQuestionType = req.body.surveyQuestionType;
   
@@ -110,7 +153,7 @@ try {
 
   SurveyQuestions.map( async(question, index) => {
     
-    await Survey.findOneAndUpdate({_id: currentID}, {$push: { questions: question}});
+     Survey.updateOne({_id: currentID}, {$push: { questions: question}});
   })
   
 
