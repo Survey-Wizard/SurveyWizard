@@ -1,0 +1,40 @@
+<%- include('../../Partials/header/header.ejs'); %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/Client/Content/app.css" />
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="/Scripts/addSurveyQuestion.js"></script>
+    <link
+      rel="stylesheet"
+      href="/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container" id="createQuestion-container">
+      <div class="survey-header">
+        <button class="add-logo">+ Logo</button>
+
+        <h3 class="survey-title">Survey Title</h3>
+      </div>
+       
+      <div class="addNewQuestion">
+        <button class="newQuestion-btn" id="newQuestion-btn" onclick={handleDisplayQuestions()}
+          
+        >
+          Add new Question
+        </button>
+      </div>
+      <form action="/surveyEditor" method="post"  id="create-question">
+  
+    
+      <div class="finish-editing">
+         <button type="submit" class="add-question"> Submit </button>
+      </div>
+      </form>
+  </body>
+</html>
+<%- include('../../Partials/footer/footer.ejs'); %>
