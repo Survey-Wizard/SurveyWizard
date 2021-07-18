@@ -46,6 +46,14 @@ router.get("/createSurvey", (req, res, next) => {
         title: "Home",
     });
 });
+router.get("/survey/edit/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    let id = req.params.id;
+    console.log("Editing Survey with id of:", id);
+    let survey = yield survey_1.default.findById(id);
+    res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
+        survey: survey
+    });
+}));
 router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("THIS IS THE POST");
     try {
@@ -90,8 +98,10 @@ router.post("/surveyEditor", (req, res, next) => __awaiter(void 0, void 0, void 
             return map;
         };
         let SurveyQuestions = [...buildMap(QuestionTitle, surveyQuestionType)];
-        let name = "STRING";
-        yield survey_1.default.findOneAndUpdate({ _id: currentID }, { $push: { questions: SurveyQuestions } });
+        ;
+        SurveyQuestions.map((question, index) => __awaiter(void 0, void 0, void 0, function* () {
+            yield survey_1.default.findOneAndUpdate({ _id: currentID }, { $push: { questions: question } });
+        }));
     }
     catch (error) {
     }

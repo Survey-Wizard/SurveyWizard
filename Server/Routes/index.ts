@@ -46,6 +46,16 @@ router.get("/createSurvey", (req, res, next) => {
   });
 });
 
+router.get("/survey/edit/:id", async(req, res, next) => {
+  let id = req.params.id;
+  console.log("Editing Survey with id of:", id)
+  let survey = await Survey.findById(id);
+
+
+  res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
+          survey: survey
+      });
+});
 router.post("/createSurvey", async(req, res, next) => {
   console.log("THIS IS THE POST");
   try  {
@@ -87,7 +97,7 @@ try {
   let QuestionTitle = req.body.questonTitle;
   let surveyQuestionType = req.body.surveyQuestionType;
   
-  const buildMap = (QuestionTitle:any, surveyQuestionType:any) => {
+  const buildMap = (QuestionTitle: any, surveyQuestionType: any) => {
     const map = new Map();
     for(let i = 0; i < QuestionTitle.length; i++){
       map.set(QuestionTitle[i], surveyQuestionType[i]);
@@ -95,10 +105,13 @@ try {
    return map;
   }
 
-  let SurveyQuestions = [...buildMap(QuestionTitle, surveyQuestionType)];
-  let name = "STRING";
+  let SurveyQuestions = [...buildMap(QuestionTitle, surveyQuestionType)];;
 
-  await Survey.findOneAndUpdate({_id: currentID}, {$push: { questions: SurveyQuestions}});
+  SurveyQuestions.map( async(question, index) => {
+    
+    await Survey.findOneAndUpdate({_id: currentID}, {$push: { questions: question}});
+  })
+  
 
 }
 catch(error) {

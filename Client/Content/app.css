@@ -195,3 +195,12 @@ padding: 10px;
 .create-survey-btn {
     margin-left: 180px;
 }
+
+/* edit surveyPage */
+
+#editQuestions-container {
+    border: 1px solid black;
+}
+#editQuestions-row {
+    border: 1px solid black;
+}
