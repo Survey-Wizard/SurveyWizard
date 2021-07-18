@@ -29,6 +29,7 @@ router.get("/explorePage", (req, res, next) => {
 });
 router.get("/mySurveys", (req, res, next) => {
     survey_1.default.find((err, surveys) => {
+        console.log("surveys", surveys[0].id);
         if (err) {
             return console.log(err);
         }
@@ -143,4 +144,17 @@ router.post("/surveyEditor", (req, res, next) => __awaiter(void 0, void 0, void 
     catch (error) {
     }
 }));
+router.get("/mySurvey/delete/:id", (req, res, next) => {
+    let id = req.params.id;
+    console.log(req.params);
+    survey_1.default.remove({ _id: id }, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("Survey Removed", id);
+            res.redirect("/mySurveys");
+        }
+    });
+});
 //# sourceMappingURL=index.js.map
