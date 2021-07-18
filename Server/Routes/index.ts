@@ -49,15 +49,12 @@ router.get("/survey/edit/:id", async(req, res, next) => {
   console.log("Editing Survey with id of:", id)
   let survey = await Survey.findById(id);
   let surveyQuestions = survey.questions;
-
-  surveyQuestions.map((question: any, index: any) => {
-    console.log(question[0])
+  console.log("legnth",survey.questions.length)
     res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
       survey: survey,
-      questions: question,
-      index: index
+      surveyQuestions: surveyQuestions
   });
-  })
+
 
 });
 router.post("/createSurvey", async(req, res, next) => {

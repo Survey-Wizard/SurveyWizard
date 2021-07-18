@@ -12,7 +12,19 @@
 
   <body>
     <div class="container" id="editQuestions-container">
+    <% surveyQuestions.map((question, index) => { %>
+  <h2 class='question-number'>Question <%= index + 1 %></h2>
+      <input class='question-box' name="questonTitle" placeholder="<%=question[0] %>"/>
       
+      <select name='surveyQuestionType' id='surveyType'>
+      <option value='Survey Category'><%=question[1] %></option>
+      <option value='Multiple-Choice'>Multiple Choice</option>
+      <option value='Radio-Buttons'>Radio Buttons</option> 
+      <option value='Text-Box'>Text Box</option> 
+      <option value='Star-Rating'>Star Rating</option>
+      </select>
+
+   <% }) %>
     
     </div>
   </body>
