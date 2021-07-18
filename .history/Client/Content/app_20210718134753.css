@@ -1,0 +1,206 @@
+/* navBar */
+/* navBar */
+.navBar-options {
+    padding: 10px;
+    border: 1px solid red;
+    margin-left: auto;
+    margin-right: 20px;
+    width: 20%;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.profile {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.logIn-btn {
+    margin-top: 5px;
+}
+.logo {
+ 
+    width: 140px;
+    height: 60px;
+    margin-top: -5px;
+}
+.nav-link {
+    margin-top: 10px;
+  
+}
+
+
+.createSurvey-btn {
+    position: relative;
+    top: 20px;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 10px;
+    text-decoration: none;
+    color: grey;
+}
+
+/* main container */
+
+#main-container {
+    border: 1px solid black;
+    max-width: 90%;
+    height: fit-content;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+.homePage-container {
+    height: 100%;
+    border: 2px solid orange
+}
+#container-row-top {
+    border: 1px solid black;
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 150px;
+    margin-top: 100px;
+}
+
+.row {
+    margin-top: 200px;
+    border: 1px solid black;
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 450px;
+}
+
+#container-col {
+    border: 1px solid red;
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+
+}
+.left-side-container {
+    border: 2px solid blue;
+    margin-right: 10px;
+}
+.right-side-container {
+    border: 2px solid green;
+}
+/* Footer */
+
+.footer {
+    position: relative;
+  
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 60px;
+    background-color: #f8f9fa!important;
+}
+
+/* create survey page */
+
+#wrapper {
+    border: 1px solid red;
+    padding: 10px;
+   
+}
+.createSurvey-container {
+border: 1px solid black;
+padding: 10px;
+
+}
+.survey-info {
+    border: 1px solid green;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.survey-format {
+    border: 1px solid orange;
+    height: 100px;
+    padding: 10px;
+}
+
+.createsurvey-btn-wrapper {
+    border: 1px solid pink;
+    padding: 10px;
+    height: 50px;
+}
+.create-survey {
+    text-decoration: none;
+    color: grey;
+    border: 1px solid black;
+    border-radius: 5px;
+    float: right;
+}
+
+/* survey editor / create question */
+
+#createQuestion-container {
+    border: 1px solid black;
+   padding: 10px;
+   
+}
+.add-logo {
+    margin-top: 20px;
+}
+.survey-title {
+    margin-top: 30px;
+}
+.survey-header {
+    border: 1px solid red;
+   
+    margin-bottom: 40px;
+}
+.survey-title {
+    border: 1px solid green;
+}
+.create-question {
+    border: 1px solid orange;
+}
+.question-container {
+    border: 1px solid red;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.addNewQuestion {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+.finish-editing {
+    width: auto;
+    border: 1px solid black;
+     text-align: right;
+    margin-right: 20px;
+}
+
+/* my survey page */
+
+#table-container {
+    border: 1px solid black;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    
+}
+
+.button-container {
+    padding: 10px;
+    
+}
+
+.create-survey-btn {
+    margin-left: 180px;
+}
+
+div2 {
+    border: 1px solid black;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 150px;
+    margin-left: 80px;
+    background-color: lightblue;
+  }

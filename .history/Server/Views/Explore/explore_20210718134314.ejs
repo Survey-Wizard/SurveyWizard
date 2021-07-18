@@ -12,43 +12,12 @@
     
 </head>
 
-<body>
-   <h1>These are the Active Forms</h1>
-    
-    
-    <table class="table" id="table-container">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Answer</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                <% for(let count=0; count < survey.length; count++) { %>
-                    <tr>
-                        <th scope="row"><%= count + 1 %></th>
-
-                        <td><%= survey[count].surveyName %></td>
-
-                        
-                        <td class="text-center"><button>Answer this survey!</button></td>
-                        
-
-
-                    </tr>
-
-                    <%} %>
-            </tbody>
-        </table>
-
 
 <body>
-  <h1>These are the Active Forms</h1>
+    <center><h1>These are the Active Forms</h1></center>
    
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Survey 1</strong> Click to Start!
+  <strong>Survey 1</strong> Click to 
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -56,12 +25,11 @@
 
 
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Survey 2</strong>Click to Start!
+  <strong>Survey 2</strong> You should check in on some of those fields below.
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-
 
     <!--JavaScript Section-->
     <script src="/jquery/dist/jquery.min.js"></script>

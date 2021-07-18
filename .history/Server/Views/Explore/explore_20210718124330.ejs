@@ -11,9 +11,8 @@
     <link rel='stylesheet' href='/Content/app.css' />
     
 </head>
-
 <body>
-   <h1>These are the Active Forms</h1>
+    <center><h1>These are the Active Forms</h1></center>
     
     
     <table class="table" id="table-container">
@@ -26,41 +25,29 @@
                 </tr>
             </thead>
             <tbody>
-                <% for(let count=0; count < survey.length; count++) { %>
-                    <tr>
-                        <th scope="row"><%= count + 1 %></th>
+              
 
-                        <td><%= survey[count].surveyName %></td>
+// Creates a wrapper for a series of columns
+@include make-row();
 
-                        
-                        <td class="text-center"><button>Answer this survey!</button></td>
-                        
+// Make the element grid-ready (applying everything but the width)
+@include make-col-ready();
 
+// Without optional size values, the mixin will create equal columns (similar to using .col)
+@include make-col();
+@include make-col($size, $columns: $grid-columns);
 
-                    </tr>
+// Get fancy by offsetting, or changing the sort order
+@include make-col-offset($size, $columns: $grid-columns);
 
-                    <%} %>
             </tbody>
         </table>
 
 
-<body>
-  <h1>These are the Active Forms</h1>
-   
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Survey 1</strong> Click to Start!
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
 
 
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Survey 2</strong>Click to Start!
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+
+
 
 
     <!--JavaScript Section-->

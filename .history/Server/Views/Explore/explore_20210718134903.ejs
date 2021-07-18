@@ -2,6 +2,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
+div {
+  border: 1px solid black;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 80px;
+  background-color: lightblue;
+}
+</style>
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,40 +22,9 @@
     
 </head>
 
-<body>
-   <h1>These are the Active Forms</h1>
-    
-    
-    <table class="table" id="table-container">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Answer</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                <% for(let count=0; count < survey.length; count++) { %>
-                    <tr>
-                        <th scope="row"><%= count + 1 %></th>
-
-                        <td><%= survey[count].surveyName %></td>
-
-                        
-                        <td class="text-center"><button>Answer this survey!</button></td>
-                        
-
-
-                    </tr>
-
-                    <%} %>
-            </tbody>
-        </table>
-
 
 <body>
-  <h1>These are the Active Forms</h1>
+    <center><h1>These are the Active Forms</h1></center>
    
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <strong>Survey 1</strong> Click to Start!
@@ -61,7 +40,6 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-
 
     <!--JavaScript Section-->
     <script src="/jquery/dist/jquery.min.js"></script>
