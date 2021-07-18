@@ -5,8 +5,6 @@ export default router;
 
 import Survey from "../Models/survey";
 
-// define the game model
-let QuestionObject = {}
 let currentID = "";
 
 /* GET home page */
@@ -50,11 +48,17 @@ router.get("/survey/edit/:id", async(req, res, next) => {
   let id = req.params.id;
   console.log("Editing Survey with id of:", id)
   let survey = await Survey.findById(id);
+  let surveyQuestions = survey.questions;
 
+  surveyQuestions.map((question: any, index: any) => {
+    console.log(question[0])
+    res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
+      survey: survey,
+      questions: question,
+      index: index
+  });
+  })
 
-  res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
-          survey: survey
-      });
 });
 router.post("/createSurvey", async(req, res, next) => {
   console.log("THIS IS THE POST");

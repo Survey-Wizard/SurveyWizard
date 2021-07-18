@@ -16,7 +16,6 @@ const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 exports.default = router;
 const survey_1 = __importDefault(require("../Models/survey"));
-let QuestionObject = {};
 let currentID = "";
 router.get("/", (req, res, next) => {
     res.render("../Views/Content/index.ejs", {
@@ -50,8 +49,14 @@ router.get("/survey/edit/:id", (req, res, next) => __awaiter(void 0, void 0, voi
     let id = req.params.id;
     console.log("Editing Survey with id of:", id);
     let survey = yield survey_1.default.findById(id);
-    res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
-        survey: survey
+    let surveyQuestions = survey.questions;
+    surveyQuestions.map((question, index) => {
+        console.log(question[0]);
+        res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
+            survey: survey,
+            questions: question,
+            index: index
+        });
     });
 }));
 router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
