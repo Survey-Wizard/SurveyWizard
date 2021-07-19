@@ -11,7 +11,7 @@
         <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
         <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
         <link rel='stylesheet' href='/Content/app.css' />
-      <script src="/Scripts/deleteSurvey.js"></script>
+
     </head>
 
     <body>
@@ -46,34 +46,35 @@
                         <td class="text-center"><button>Share</button></td>
                         <td class="text-center"><a href="/survey/edit/<%= survey[count]._id %>" class="btn btn-primary btn-sm edit"> Edit</a></td>
 
-                   <td class="text-center">
-<!-- Trigger/Open The Modal -->
-                    <button onclick={HandleDiplayPopUp()} id=<%= survey[count]._id %>>Open Modal</button>
-                    </td>
+                        <td class="text-center"><button type="button" class="delete-btn" data-toggle="modal"
+                                data-target="#DeleteContactModal"
+                                onclick="document.getElementById('id01').style.display='block'"
+                                id="<%= survey[count]._id %>">Delete Survey</button>
+                                
+                        </td>
+
 
                     </tr>           
-                  
-                      
-                      </div>
-                      <div id="myModal" class="modal">
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                          <span onclick={handleClosePopUp()} class="close">&times;</span>
-                          
-                          <a href=/mySurvey/delete/<%= survey[count]._id %> > Delete</a>
-                        </div>
+                    <div class="modal fade" id="DeleteContactModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document" id="DeleteContactModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    Are you sure you want to Delete this book from your favourite books list?
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="/survey/delete/<%= survey[count]._id %>"> Delete</a>
+                                    <a href="/books" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a>
+                                </div>
+                            </div>
+
                             <%} %>
-                         <!-- The Modal -->
-
-                          
-
-</div>
-                    
             </tbody>
         </table>
-        
-                                
-
         <div class="button-container">
             <button class="create-survey-btn"> + Create Survey </button>
         </div>
@@ -83,8 +84,6 @@
         <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="/Scripts/app.js"></script>
     </body>
-<script>
 
-</script>
     </html>
     <%- include('../Partials/footer/footer.ejs'); %>
