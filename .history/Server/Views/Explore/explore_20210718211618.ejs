@@ -1,0 +1,58 @@
+<%- include('../Partials/header/header.ejs'); %>
+ <div class="container">
+      <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+          <h3>Favourite survey List </h3>
+          <!-- ------------------------ -->
+          <!-- FIXED ADD BUTTON BELOW -->
+          <a href="/survey/add" class="btn btn-primary"><i class="fa fa-plus"></i> Add a book</a>
+          <br>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th class="text-center">Price</th>
+                  <th class="text-center">Author</th>
+                  <th class="text-center">Genre</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Template Row -->
+                <% for (let count = 0; count < survey.length; count++) { %>
+                <tr>
+                  <td><%= survey[count].Title %></td>
+                  <td class="text-center">$<%= survey[count].Price %></td>
+                  <td class="text-center"><%= survey[count].Author %></td>
+                  <td class="text-center"><%= survey[count].Genre %></td>
+                  <td class="text-center">
+                    <!-- ------------------------ -->
+                    <!-- ADDED the EDIT BUTTON HERE -->
+                    <a href="/survey/edit/<%= survey[count]._id %>" class="btn btn-primary btn-sm">
+                    <i class="fas fa-pencil-alt"></i> Edit</a>
+                  </td>
+                  <td class="text-center">
+                    <!-- ------------------------ -->
+                    <!-- ADDED the DELETE BUTTON HERE -->
+                    <a href="/survey/delete/<%= survey[count]._id %>" class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash-alt"></i> Delete</a>
+                  </td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+           <div class="col-md-offset-1 col-md-10 text-center">
+            <ul class="pagination pagination-lg pager" id="myPager"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--JavaScript Section-->
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/Scripts/app.js"></script>
+</body>
+</html>
+<%- include('../Partials/footer/footer.ejs'); %>

@@ -1,0 +1,45 @@
+<%- include('../Partials/header/header.ejs'); %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--CSS Section-->
+    <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
+    <link rel='stylesheet' href='/Content/app.css' />
+    
+</head>
+
+<body>
+  <h1>These are the Active Forms</h1>
+
+<% for (let count = 0; count < survey.length; count++) { %>
+                <tr>
+                  <td><%= survey[count].Title %></td>
+                  <td class="text-center">$<%= survey[count].Price %></td>
+                  <td class="text-center"><%= survey[count].Author %></td>
+                  <td class="text-center"><%= survey[count].Genre %></td>
+                  <td class="text-center">
+                    <!-- ------------------------ -->
+                    <!-- ADDED the EDIT BUTTON HERE -->
+                    <a href="/survey/edit/<%= survey[count]._id %>" class="btn btn-primary btn-sm">
+                    <i class="fas fa-pencil-alt"></i> Edit</a>
+                  </td>
+                  <td class="text-center">
+                    <!-- ------------------------ -->
+                    <!-- ADDED the DELETE BUTTON HERE -->
+                    <a href="/survey/delete/<%= survey[count]._id %>" class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash-alt"></i> Delete</a>
+                  </td>
+                </tr>
+                <% } %>
+
+    <!--JavaScript Section-->
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/Scripts/app.js"></script>
+</body>
+</html>
+<%- include('../Partials/footer/footer.ejs'); %>

@@ -246,3 +246,10 @@ padding: 10px;
     text-decoration: none;
     cursor: pointer;
   }
+  /* Explore CSS */
+
+  .survey-header {
+    border: 1px solid red;
+   
+    margin-bottom: 40px;
+}

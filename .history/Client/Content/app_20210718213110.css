@@ -246,3 +246,11 @@ padding: 10px;
     text-decoration: none;
     cursor: pointer;
   }
+  /* Explore CSS */
+
+  .explore-header {
+    width: 100%;
+        z-index: 50;
+        position: fixed;
+        display: inline-block;
+    }
