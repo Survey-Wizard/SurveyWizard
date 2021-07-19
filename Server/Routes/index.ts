@@ -24,6 +24,7 @@ router.get("/explorePage", (req, res, next) => {
 /*GET mySurveys page*/
 router.get("/mySurveys", (req, res, next) => {
   Survey.find((err, surveys) => {
+    console.log("surveys", surveys[0].id)
     if(err) {
       return console.log(err);
     }
@@ -163,6 +164,19 @@ catch(error) {
 }
 })
 
+router.get("/mySurvey/delete/:id", (req, res, next) => {
+  let id = req.params.id;
+  console.log(req.params)
+  Survey.remove({_id: id}, (err) => {
+    if(err) {
+      console.log(err)
+    }
+    else {
+      console.log("Survey Removed", id);
+      res.redirect("/mySurveys");    
+    }
+  })
+})
 
 
 
