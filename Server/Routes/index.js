@@ -29,7 +29,6 @@ router.get("/explorePage", (req, res, next) => {
 });
 router.get("/mySurveys", (req, res, next) => {
     survey_1.default.find((err, surveys) => {
-        console.log("surveys", surveys[0].id);
         if (err) {
             return console.log(err);
         }
@@ -50,12 +49,36 @@ router.get("/survey/edit/:id", (req, res, next) => __awaiter(void 0, void 0, voi
     let id = req.params.id;
     console.log("Editing Survey with id of:", id);
     let survey = yield survey_1.default.findById(id);
+    console.log("survey", survey);
     let surveyQuestions = survey.questions;
-    console.log("legnth", survey.questions.length);
+    console.log(surveyQuestions);
     res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
         survey: survey,
         surveyQuestions: surveyQuestions
     });
+}));
+router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("THIS IS THE POST");
+    try {
+        console.log(req.body);
+        let surveyName = req.body.title;
+        let surveyType = req.body.surveyType;
+        let publicValue = req.body.publicValue;
+        let format = "Some surveyType";
+        let newSurvey = yield survey_1.default.create({
+            "surveyName": surveyName,
+            "surveyCategory": surveyType,
+            "publicValue": publicValue,
+            "surveyType": format
+        });
+        console.log("NEW SURVEY CREATED", newSurvey.id);
+        currentID = newSurvey.id;
+        console.log("CURRENT ID", currentID);
+        res.redirect('/surveyEditor');
+    }
+    catch (error) {
+        console.log("ERROR", error);
+    }
 }));
 router.post("/survey/edit/:id", (req, res, next) => {
     let id = req.params.id;
@@ -92,29 +115,6 @@ router.post("/survey/edit/:id", (req, res, next) => {
         res.redirect("/mySurveys");
     });
 });
-router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("THIS IS THE POST");
-    try {
-        console.log(req.body);
-        let surveyName = req.body.title;
-        let surveyType = req.body.surveyType;
-        let publicValue = req.body.publicValue;
-        let format = "Some surveyType";
-        let newSurvey = yield survey_1.default.create({
-            "surveyName": surveyName,
-            "surveyCategory": surveyType,
-            "publicValue": publicValue,
-            "surveyType": format
-        });
-        console.log("NEW SURVEY CREATED", newSurvey.id);
-        currentID = newSurvey.id;
-        console.log("CURRENT ID", currentID);
-        res.redirect('/surveyEditor');
-    }
-    catch (error) {
-        console.log("ERROR", error);
-    }
-}));
 router.get("/surveyEditor", (req, res, next) => {
     res.render("../Views/Survey/surveyEditor/surveyEditor.ejs", {
         title: "Home",
@@ -138,23 +138,21 @@ router.post("/surveyEditor", (req, res, next) => __awaiter(void 0, void 0, void 
         let SurveyQuestions = [...buildMap(QuestionTitle, surveyQuestionType)];
         ;
         SurveyQuestions.map((question, index) => __awaiter(void 0, void 0, void 0, function* () {
-            survey_1.default.updateOne({ _id: currentID }, { $push: { questions: question } });
+            yield survey_1.default.findOneAndUpdate({ _id: currentID }, { $push: { questions: question } });
         }));
     }
     catch (error) {
     }
 }));
-router.get("/mySurvey/delete/:id", (req, res, next) => {
+router.get("/survey/delete/:id", (req, res, next) => {
     let id = req.params.id;
-    console.log(req.params);
     survey_1.default.remove({ _id: id }, (err) => {
         if (err) {
-            console.log(err);
+            console.error(err);
+            res.end(err);
         }
-        else {
-            console.log("Survey Removed", id);
-            res.redirect("/mySurveys");
-        }
+        res.redirect('/mySurveys');
     });
 });
+module.exports = router;
 //# sourceMappingURL=index.js.map

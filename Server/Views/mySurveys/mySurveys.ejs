@@ -45,23 +45,15 @@
                         <td class="text-center"><button>Analyize</button></td>
                         <td class="text-center"><button>Share</button></td>
                         <td class="text-center"><a href="/survey/edit/<%= survey[count]._id %>" class="btn btn-primary btn-sm edit"> Edit</a></td>
-
                    <td class="text-center">
 <!-- Trigger/Open The Modal -->
-                    <button onclick={HandleDiplayPopUp()} id=<%= survey[count]._id %>>Open Modal</button>
+                    <a onclick={HandleDiplayPopUp()} href="/survey/delete/<%= survey[count]._id %>">Open Modal</a>
                     </td>
 
                     </tr>           
                   
                       
                       </div>
-                      <div id="myModal" class="modal">
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                          <span onclick={handleClosePopUp()} class="close">&times;</span>
-                          
-                          <a href=/mySurvey/delete/<%= survey[count]._id %> > Delete</a>
-                        </div>
                             <%} %>
                          <!-- The Modal -->
 
