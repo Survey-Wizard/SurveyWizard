@@ -70,6 +70,10 @@ app.use(passport.session());
 //import an auth strategy 
 passport.use(User.createStrategy());
 
+// serialize and deserialize user data
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 // create routing through event handling
 app.use("/", indexRouter);
 

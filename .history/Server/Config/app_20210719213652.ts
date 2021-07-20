@@ -28,6 +28,19 @@ import indexRouter from "../Routes/index";
 const app = express();
 export default app;
 
+// initialize flash
+app.use(flash())
+
+//initialize passport
+app.use(passport.initialize);
+app.use(passport.session());
+
+//import an auth strategy 
+passport.use(User.createStrategy());
+
+
+
+
 //Database access
 import * as DBConfig from "./db";
 mongoose.connect(DBConfig.RemoteURI, {useNewUrlParser: true, useUnifiedTopology: true});
@@ -39,10 +52,21 @@ db.once('open', function()
   console.log(`Connected to MongoDB at: ${DBConfig.HostName}`);
 });
 
+// setup express session
+app.use(session({
+  secret: DBConfig.Secret,
+  saveUninitialized: false,
+  resave: false
+}))
+
+
+
+
+
 // view engine setup
 app.set("views", path.join(__dirname, "../Views"));
 app.set("view engine", "ejs");
-
+  
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -52,23 +76,6 @@ app.use(express.static(path.join(__dirname, "../../node_modules")));
 
 // add support for CORS
 app.use(cors());
-
-// setup express session
-app.use(session({
-  secret: DBConfig.Secret,
-  saveUninitialized: false,
-  resave: false
-}))
-
-// initialize flash
-app.use(flash())
-
-//initialize passport
-app.use(passport.initialize);
-app.use(passport.session());
-
-//import an auth strategy 
-passport.use(User.createStrategy());
 
 // create routing through event handling
 app.use("/", indexRouter);

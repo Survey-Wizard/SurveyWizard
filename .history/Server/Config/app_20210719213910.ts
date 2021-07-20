@@ -43,6 +43,11 @@ db.once('open', function()
 app.set("views", path.join(__dirname, "../Views"));
 app.set("view engine", "ejs");
 
+
+
+// initialize flash
+app.use(flash())
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -60,8 +65,6 @@ app.use(session({
   resave: false
 }))
 
-// initialize flash
-app.use(flash())
 
 //initialize passport
 app.use(passport.initialize);
@@ -69,6 +72,23 @@ app.use(passport.session());
 
 //import an auth strategy 
 passport.use(User.createStrategy());
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
 
 // create routing through event handling
 app.use("/", indexRouter);
