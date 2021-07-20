@@ -5,6 +5,43 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 
+// Authentication Modules
+import session from 'express-session';
+import passport from 'passport';
+import passportLocal from 'passport-local';
+
+//Authentication Objects
+let localStrategy = passportLocal.Strategy; //Alias 
+import User from '../Models/user';
+
+// CORS modules
+import cors from 'cors';
+
+// Express Web App Configuration
+const app = express();
+export default app;
+
+// setup express session
+app.use(session({
+  secret: DBConfig.Secret,
+  saveUninitialized: false,
+  resave: false
+}))
+
+// initialize flash
+app.use(flash())
+
+//initialize passport
+app.use(passport.initialize);
+app.use(passport.session());
+
+//import an auth strategy 
+passport.use(User.createStrategy());
+
+//module for auth message and error management
+import flash from 'connect-flash';
+
+
 //Database access
 import * as DBConfig from "./db";
 mongoose.connect(DBConfig.RemoteURI, {useNewUrlParser: true, useUnifiedTopology: true});
@@ -18,10 +55,8 @@ db.once('open', function()
 
 // attach router files
 import indexRouter from "../Routes/index";
+// IMPORT ROUTER FROM '../Routes/...';
 
-// Express Web App Configuration
-const app = express();
-export default app;
 
 // view engine setup
 app.set("views", path.join(__dirname, "../Views"));
@@ -33,6 +68,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../../Client")));
 app.use(express.static(path.join(__dirname, "../../node_modules")));
+
+// add support for CORS
+app.use(cors());
 
 // create routing through event handling
 app.use("/", indexRouter);
