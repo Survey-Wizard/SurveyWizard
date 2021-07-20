@@ -8,7 +8,7 @@
         if(!confirm("Are you sure?"))
         {
           event.preventDefault();
-          location.href = '/mySurveys';
+          location.href = '/mySurvey';
         }       
       });
     }

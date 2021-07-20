@@ -120,14 +120,14 @@ catch(error) {
 }
 })
 
-
 // Process (D)elete page
+
 router.get("/survey/delete/:id", (req, res, next) =>
 {
   
   let id = req.params.id;
 
-  // db.survey.remove({"_id: id"})
+  // db.clothing.remove({"_id: id"})
   Survey.remove({_id: id}, (err) => {
     if(err)
     {
