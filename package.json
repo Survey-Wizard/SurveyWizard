@@ -42,7 +42,7 @@
     "@types/node": "^16.3.2",
     "@types/passport": "^1.0.7",
     "@types/passport-local": "^1.0.34",
-    "@types/passport-local-mongoose": "^4.0.13",
+    "@types/passport-local-mongoose": "^4.0.15",
     "@types/popper.js": "^1.11.0"
   }
 }
