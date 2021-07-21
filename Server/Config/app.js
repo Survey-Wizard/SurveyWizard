@@ -28,6 +28,16 @@ const path_1 = __importDefault(require("path"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const express_session_1 = __importDefault(require("express-session"));
+const passport_1 = __importDefault(require("passport"));
+const passport_local_1 = __importDefault(require("passport-local"));
+const cors_1 = __importDefault(require("cors"));
+let localStrategy = passport_local_1.default.Strategy;
+const user_1 = __importDefault(require("../Models/user"));
+const connect_flash_1 = __importDefault(require("connect-flash"));
+const index_1 = __importDefault(require("../Routes/index"));
+const app = express_1.default();
+exports.default = app;
 const DBConfig = __importStar(require("./db"));
 mongoose_1.default.connect(DBConfig.RemoteURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose_1.default.connection;
@@ -35,9 +45,6 @@ db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function () {
     console.log(`Connected to MongoDB at: ${DBConfig.HostName}`);
 });
-const index_1 = __importDefault(require("../Routes/index"));
-const app = express_1.default();
-exports.default = app;
 app.set("views", path_1.default.join(__dirname, "../Views"));
 app.set("view engine", "ejs");
 app.use(morgan_1.default("dev"));
@@ -46,6 +53,14 @@ app.use(express_1.default.urlencoded({ extended: false }));
 app.use(cookie_parser_1.default());
 app.use(express_1.default.static(path_1.default.join(__dirname, "../../Client")));
 app.use(express_1.default.static(path_1.default.join(__dirname, "../../node_modules")));
+app.use(cors_1.default());
+app.use(express_session_1.default({
+    secret: DBConfig.Secret,
+    saveUninitialized: false,
+    resave: false
+}));
+app.use(connect_flash_1.default());
+passport_1.default.use(user_1.default.createStrategy());
 app.use("/", index_1.default);
 app.use(function (req, res, next) {
     next(http_errors_1.default(404));
