@@ -45,20 +45,6 @@ router.get("/createSurvey", (req, res, next) => {
 });
 
 
-/*GET login page*/
-router.get("/login", (req, res, next) => {
-  res.render("../Views/Authorization/login.ejs", {
-    title: "Home",
-  });
-});
-
-/*GET Register page*/
-router.get("/register", (req, res, next) => {
-  res.render("../Views/Authorization/register.ejs", {
-    title: "Home",
-  });
-});
-
 
 router.get("/survey/edit/:id", async(req, res, next) => {
   let id = req.params.id;

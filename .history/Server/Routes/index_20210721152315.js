@@ -45,21 +45,6 @@ router.get("/createSurvey", (req, res, next) => {
         title: "Home",
     });
 });
-
-/*GET login page*/
-router.get("/login", (req, res, next) => {
-    res.render("../Views/Authorization/login.ejs", {
-      title: "Home",
-    });
-});
-
-/*GET Register page*/
-router.get("/register", (req, res, next) => {
-    res.render("../Views/Authorization/register.ejs", {
-      title: "Home",
-    });
-});
-
 router.get("/survey/edit/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let id = req.params.id;
     console.log("Editing Survey with id of:", id);

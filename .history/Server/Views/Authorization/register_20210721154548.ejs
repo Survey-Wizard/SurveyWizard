@@ -1,0 +1,59 @@
+<%- include('../Partials/header/header.ejs'); %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--CSS Section-->
+    <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
+    <link rel='stylesheet' href='/Content/app.css' />
+
+</head>
+<body>
+
+<main class="container">
+  <div class="row">
+        <div class="offset-md-4 col-md-4">
+            <h1>Please Register</h1>
+            <form method="POST" autocomplete="off">
+                <fieldset class="form-group">
+                    <label for="username">Username: </label>
+                    <input type="text" class="form-control" name="username" placeholder="Enter username" id="username" required autofocus>
+                </fieldset>
+        
+                <fieldset class="form-group">
+                    <label for="password">Password: </label>
+                    <input type="password" class="form-control" name="password" placeholder="Enter password" id="password" required>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="email">Email: </label>
+                    <input type="email" class="form-control" name="email" placeholder="Enter email Address" id="email" required>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="displayName">Display name: </label>
+                    <input type="text" class="form-control" name="displayName" placeholder="Enter Display Name" id="displayName" required>
+                   
+                </fieldset>
+                
+                <fieldset class="form-group text-right">
+                    <input type="submit" value="Register" class="btn btn-success">
+                    <a href="/" >
+                        <input type="button" class="btn btn-warning" value="Cancel">
+                    </a>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</main>
+
+  <!--JavaScript Section-->
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/Scripts/app.js"></script>
+</body>
+</html>
+<%- include('../Partials/footer/footer.ejs'); %>
