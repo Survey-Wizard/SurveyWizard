@@ -60,7 +60,11 @@ app.use(express_session_1.default({
     resave: false
 }));
 app.use(connect_flash_1.default());
+app.use(passport_1.default.initialize());
+app.use(passport_1.default.session());
 passport_1.default.use(user_1.default.createStrategy());
+passport_1.default.serializeUser(user_1.default.serializeUser());
+passport_1.default.deserializeUser(user_1.default.deserializeUser());
 app.use("/", index_1.default);
 app.use(function (req, res, next) {
     next(http_errors_1.default(404));
