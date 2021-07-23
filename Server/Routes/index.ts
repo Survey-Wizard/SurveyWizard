@@ -171,7 +171,7 @@ router.post('/login', (req, res, next) => {
     if(!user)
     {
         req.flash('loginMessage', 'Authentication Error');
-        return res.redirect("../Views/Authorization/login.ejs");
+        return res.redirect("/mySurveys");
     }
 
     req.login(user, (err) =>
@@ -183,7 +183,7 @@ router.post('/login', (req, res, next) => {
             return next(err);
         }
         
-        return res.redirect("../Views/Content/index.ejs");
+        return res.redirect("/mySurveys");
 
     });
 
@@ -219,11 +219,11 @@ User.register(newUser, req.body.password, (err) =>
         }
         req.flash('registerMessage', 'Registration Error');
 
-        return res.redirect("../Views/Authorization/register.ejs");   
+        return res.redirect("/mySurveys");   
     }
     //after successful registration - login the user 
     return passport.authenticate('local')(req, res, () => {
-        return res.redirect("../Views/Content/index.ejs");
+        return res.redirect("/mySurveys");
     });
 });
 });

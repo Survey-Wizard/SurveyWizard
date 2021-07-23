@@ -133,14 +133,14 @@ router.post('/login', (req, res, next) => {
         }
         if (!user) {
             req.flash('loginMessage', 'Authentication Error');
-            return res.redirect("../Views/Authorization/login.ejs");
+            return res.redirect("/mySurveys");
         }
         req.login(user, (err) => {
             if (err) {
                 console.error(err);
                 return next(err);
             }
-            return res.redirect("../Views/Content/index.ejs");
+            return res.redirect("/mySurveys");
         });
     })(req, res, next);
 });
@@ -162,10 +162,10 @@ router.post('/register', (req, res, next) => {
                 console.error('Error: User Already Exists');
             }
             req.flash('registerMessage', 'Registration Error');
-            return res.redirect("../Views/Authorization/register.ejs");
+            return res.redirect("/mySurveys");
         }
         return passport_1.default.authenticate('local')(req, res, () => {
-            return res.redirect("../Views/Content/index.ejs");
+            return res.redirect("/mySurveys");
         });
     });
 });
