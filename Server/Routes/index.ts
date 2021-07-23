@@ -1,3 +1,8 @@
+import passport from 'passport';
+
+//create an instance from the user model 
+import User from '../Models/user'
+
 // modules required for routing
 import express from "express";
 const router = express.Router();
@@ -40,21 +45,6 @@ router.get("/mySurveys", (req, res, next) => {
 /*GET createSurvey page*/
 router.get("/createSurvey", (req, res, next) => {
   res.render("../Views/Survey/createSurvey/createSurvey.ejs", {
-    title: "Home",
-  });
-});
-
-
-/*GET login page*/
-router.get("/login", (req, res, next) => {
-  res.render("../Views/Authorization/login.ejs", {
-    title: "Home",
-  });
-});
-
-/*GET Register page*/
-router.get("/register", (req, res, next) => {
-  res.render("../Views/Authorization/register.ejs", {
     title: "Home",
   });
 });
@@ -157,6 +147,94 @@ router.get("/survey/delete/:id", (req, res, next) =>
 
 );
 
+//AUTHENTICATION SECTION
 
+/*GET login page*/
+router.get("/login", (req, res, next) => {
+  res.render("../Views/Authorization/login.ejs", {
+    title: "Home",
+  });
+});
+
+//POST - process login page when user clicks login btn
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => 
+{
+    //are there server errors?
+    if(err)
+    {
+        console.error(err);
+        return next(err);
+    }
+
+    //are there login errors?
+    if(!user)
+    {
+        req.flash('loginMessage', 'Authentication Error');
+        return res.redirect("../Views/Authorization/login.ejs");
+    }
+
+    req.login(user, (err) =>
+    {
+        //are there database errors>
+        if(err)
+        {
+            console.error(err);
+            return next(err);
+        }
+        
+        return res.redirect("../Views/Content/index.ejs");
+
+    });
+
+})(req, res, next);
+});
+
+/*GET Register page*/
+router.get("/register", (req, res, next) => {
+  res.render("../Views/Authorization/register.ejs", {
+    title: "Home",
+  });
+});
+
+// POST - process register page when suer clicks register btn
+router.post('/register',(req, res, next) =>
+{
+//instantiate a new user object
+let newUser = new User
+({
+    username: req.body.username,
+    emailAddress: req.body.emailAddress,
+    displayName: req.body.FirstName + " " + req.body.LastName
+});
+
+User.register(newUser, req.body.password, (err) => 
+{
+    if(err)
+    {
+        console.error('Error: Inserting New User');
+        if(err.name == "UserExistsError")
+        {
+            console.error('Error: User Already Exists');
+        }
+        req.flash('registerMessage', 'Registration Error');
+
+        return res.redirect("../Views/Authorization/register.ejs");   
+    }
+    //after successful registration - login the user 
+    return passport.authenticate('local')(req, res, () => {
+        return res.redirect("../Views/Content/index.ejs");
+    });
+});
+});
+
+// GET - process logout page with /logout
+router.get('/logout', (req, res, next) => 
+{
+  req.logout();
+
+    res.redirect("../Views/Authorization/login.ejs");
+}
+);
 
 //module.exports = router;

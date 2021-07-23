@@ -12,6 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const passport_1 = __importDefault(require("passport"));
+const user_1 = __importDefault(require("../Models/user"));
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 exports.default = router;
@@ -42,16 +44,6 @@ router.get("/mySurveys", (req, res, next) => {
 });
 router.get("/createSurvey", (req, res, next) => {
     res.render("../Views/Survey/createSurvey/createSurvey.ejs", {
-        title: "Home",
-    });
-});
-router.get("/login", (req, res, next) => {
-    res.render("../Views/Authorization/login.ejs", {
-        title: "Home",
-    });
-});
-router.get("/register", (req, res, next) => {
-    res.render("../Views/Authorization/register.ejs", {
         title: "Home",
     });
 });
@@ -127,5 +119,58 @@ router.get("/survey/delete/:id", (req, res, next) => {
         }
         res.redirect('/mySurveys');
     });
+});
+router.get("/login", (req, res, next) => {
+    res.render("../Views/Authorization/login.ejs", {
+        title: "Home",
+    });
+});
+router.post('/login', (req, res, next) => {
+    passport_1.default.authenticate('local', (err, user, info) => {
+        if (err) {
+            console.error(err);
+            return next(err);
+        }
+        if (!user) {
+            req.flash('loginMessage', 'Authentication Error');
+            return res.redirect("../Views/Authorization/login.ejs");
+        }
+        req.login(user, (err) => {
+            if (err) {
+                console.error(err);
+                return next(err);
+            }
+            return res.redirect("../Views/Content/index.ejs");
+        });
+    })(req, res, next);
+});
+router.get("/register", (req, res, next) => {
+    res.render("../Views/Authorization/register.ejs", {
+        title: "Home",
+    });
+});
+router.post('/register', (req, res, next) => {
+    let newUser = new user_1.default({
+        username: req.body.username,
+        emailAddress: req.body.emailAddress,
+        displayName: req.body.FirstName + " " + req.body.LastName
+    });
+    user_1.default.register(newUser, req.body.password, (err) => {
+        if (err) {
+            console.error('Error: Inserting New User');
+            if (err.name == "UserExistsError") {
+                console.error('Error: User Already Exists');
+            }
+            req.flash('registerMessage', 'Registration Error');
+            return res.redirect("../Views/Authorization/register.ejs");
+        }
+        return passport_1.default.authenticate('local')(req, res, () => {
+            return res.redirect("../Views/Content/index.ejs");
+        });
+    });
+});
+router.get('/logout', (req, res, next) => {
+    req.logout();
+    res.redirect("../Views/Authorization/login.ejs");
 });
 //# sourceMappingURL=index.js.map
