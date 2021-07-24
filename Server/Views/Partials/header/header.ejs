@@ -29,12 +29,14 @@
             Explore <span class="sr-only">(current)</span>
             </a>
           </li>
+          <% if(displayName) { %>
           <li class="nav-item">
             <a class="nav-link" href="/mySurveys">My Surveys</a>
           </li>
           <li class="nav-item dropdown">
            <a class="createSurvey-btn" href="/createSurvey"> + Create Survey</a>
           </li>
+          <% } %>
         </ul>
         <div class="navBar-options">
           <div class="btn-container">
