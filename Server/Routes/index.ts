@@ -3,6 +3,9 @@ import passport from 'passport';
 //create an instance from the user model 
 import User from '../Models/user'
 
+// IMPORT UTIL FUNCTION     !!!
+import { UserDisplayName, AuthGuard } from '../Util';
+
 // modules required for routing
 import express from "express";
 const router = express.Router();
@@ -16,6 +19,7 @@ let currentID = "";
 router.get("/", (req, res, next) => {
   res.render("../Views/Content/index.ejs", {
     title: "Home",
+    displayName: UserDisplayName(req)
   });
 });
 
@@ -23,6 +27,7 @@ router.get("/", (req, res, next) => {
 router.get("/explorePage", (req, res, next) => {
   res.render("../Views/Explore/explore.ejs", {
     title: "Home",
+    displayName: UserDisplayName(req)
   });
 });
 
@@ -35,7 +40,8 @@ router.get("/mySurveys", (req, res, next) => {
     else {
       res.render("../Views/mySurveys/mySurveys.ejs", {
         title: "Home",
-        survey: surveys
+        survey: surveys,
+        displayName: UserDisplayName(req)
       });
     }
   })
@@ -46,6 +52,7 @@ router.get("/mySurveys", (req, res, next) => {
 router.get("/createSurvey", (req, res, next) => {
   res.render("../Views/Survey/createSurvey/createSurvey.ejs", {
     title: "Home",
+    displayName: UserDisplayName(req)
   });
 });
 
@@ -58,7 +65,8 @@ router.get("/survey/edit/:id", async(req, res, next) => {
   console.log("legnth",survey.questions.length)
     res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
       survey: survey,
-      surveyQuestions: surveyQuestions
+      surveyQuestions: surveyQuestions,
+      displayName: UserDisplayName(req)
   });
 
 
@@ -92,6 +100,7 @@ router.post("/createSurvey", async(req, res, next) => {
 router.get("/surveyEditor", (req, res, next) => {
   res.render("../Views/Survey/surveyEditor/surveyEditor.ejs", {
     title: "Home",
+    displayName: UserDisplayName(req)
   });
 });
 
@@ -153,6 +162,7 @@ router.get("/survey/delete/:id", (req, res, next) =>
 router.get("/login", (req, res, next) => {
   res.render("../Views/Authorization/login.ejs", {
     title: "Home",
+    displayName: UserDisplayName(req)
   });
 });
 
@@ -194,6 +204,7 @@ router.post('/login', (req, res, next) => {
 router.get("/register", (req, res, next) => {
   res.render("../Views/Authorization/register.ejs", {
     title: "Home",
+    displayName: UserDisplayName(req)
   });
 });
 
@@ -233,7 +244,7 @@ router.get('/logout', (req, res, next) =>
 {
   req.logout();
 
-    res.redirect("../Views/Authorization/login.ejs");
+    res.redirect("/login");
 }
 );
 

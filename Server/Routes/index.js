@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const passport_1 = __importDefault(require("passport"));
 const user_1 = __importDefault(require("../Models/user"));
+const Util_1 = require("../Util");
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 exports.default = router;
@@ -22,11 +23,13 @@ let currentID = "";
 router.get("/", (req, res, next) => {
     res.render("../Views/Content/index.ejs", {
         title: "Home",
+        displayName: Util_1.UserDisplayName(req)
     });
 });
 router.get("/explorePage", (req, res, next) => {
     res.render("../Views/Explore/explore.ejs", {
         title: "Home",
+        displayName: Util_1.UserDisplayName(req)
     });
 });
 router.get("/mySurveys", (req, res, next) => {
@@ -37,7 +40,8 @@ router.get("/mySurveys", (req, res, next) => {
         else {
             res.render("../Views/mySurveys/mySurveys.ejs", {
                 title: "Home",
-                survey: surveys
+                survey: surveys,
+                displayName: Util_1.UserDisplayName(req)
             });
         }
     });
@@ -45,6 +49,7 @@ router.get("/mySurveys", (req, res, next) => {
 router.get("/createSurvey", (req, res, next) => {
     res.render("../Views/Survey/createSurvey/createSurvey.ejs", {
         title: "Home",
+        displayName: Util_1.UserDisplayName(req)
     });
 });
 router.get("/survey/edit/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -55,7 +60,8 @@ router.get("/survey/edit/:id", (req, res, next) => __awaiter(void 0, void 0, voi
     console.log("legnth", survey.questions.length);
     res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
         survey: survey,
-        surveyQuestions: surveyQuestions
+        surveyQuestions: surveyQuestions,
+        displayName: Util_1.UserDisplayName(req)
     });
 }));
 router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -84,6 +90,7 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
 router.get("/surveyEditor", (req, res, next) => {
     res.render("../Views/Survey/surveyEditor/surveyEditor.ejs", {
         title: "Home",
+        displayName: Util_1.UserDisplayName(req)
     });
 });
 router.post("/surveyEditor", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -123,6 +130,7 @@ router.get("/survey/delete/:id", (req, res, next) => {
 router.get("/login", (req, res, next) => {
     res.render("../Views/Authorization/login.ejs", {
         title: "Home",
+        displayName: Util_1.UserDisplayName(req)
     });
 });
 router.post('/login', (req, res, next) => {
@@ -147,6 +155,7 @@ router.post('/login', (req, res, next) => {
 router.get("/register", (req, res, next) => {
     res.render("../Views/Authorization/register.ejs", {
         title: "Home",
+        displayName: Util_1.UserDisplayName(req)
     });
 });
 router.post('/register', (req, res, next) => {
@@ -171,6 +180,6 @@ router.post('/register', (req, res, next) => {
 });
 router.get('/logout', (req, res, next) => {
     req.logout();
-    res.redirect("../Views/Authorization/login.ejs");
+    res.redirect("/login");
 });
 //# sourceMappingURL=index.js.map
