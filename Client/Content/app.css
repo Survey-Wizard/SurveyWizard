@@ -5,7 +5,7 @@
     border: 1px solid red;
     margin-left: auto;
     margin-right: 20px;
-    width: 20%;
+    width: 25%;
     display: grid;
     grid-template-columns: auto auto;
 }
@@ -246,3 +246,16 @@ padding: 10px;
     text-decoration: none;
     cursor: pointer;
   }
+.btn-container {
+   display: grid;
+   grid-template-columns: auto auto;
+}
+.nav-link {
+    width: 130px;
+    border: 1px solid black;
+}
+
+#register {
+    width: 130px;
+    border: 1px solid black;
+}

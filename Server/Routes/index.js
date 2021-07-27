@@ -20,6 +20,7 @@ const router = express_1.default.Router();
 exports.default = router;
 const survey_1 = __importDefault(require("../Models/survey"));
 let currentID = "";
+let currentUser = "";
 router.get("/", (req, res, next) => {
     res.render("../Views/Content/index.ejs", {
         title: "Home",
@@ -159,6 +160,7 @@ router.get("/register", (req, res, next) => {
     });
 });
 router.post('/register', (req, res, next) => {
+    currentUser = req.body.username;
     let newUser = new user_1.default({
         username: req.body.username,
         emailAddress: req.body.emailAddress,

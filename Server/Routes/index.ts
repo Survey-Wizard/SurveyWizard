@@ -14,6 +14,7 @@ export default router;
 import Survey from "../Models/survey";
 
 let currentID = "";
+let currentUser = ""
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -62,7 +63,7 @@ router.get("/survey/edit/:id", async(req, res, next) => {
   console.log("Editing Survey with id of:", id)
   let survey = await Survey.findById(id);
   let surveyQuestions = survey.questions;
-  console.log("legnth",survey.questions.length)
+  console.log("legnth", survey.questions.length)
     res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
       survey: survey,
       surveyQuestions: surveyQuestions,
@@ -212,6 +213,7 @@ router.get("/register", (req, res, next) => {
 router.post('/register',(req, res, next) =>
 {
 //instantiate a new user object
+currentUser = req.body.username;
 let newUser = new User
 ({
     username: req.body.username,
