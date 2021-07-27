@@ -34,14 +34,15 @@ router.get("/explorePage", (req, res, next) => {
     });
 });
 router.get("/mySurveys", (req, res, next) => {
-    survey_1.default.find((err, surveys) => {
+    survey_1.default.find({ surveyAuthor: currentUser }, function (err, currentUserSurveys) {
         if (err) {
             return console.log(err);
         }
         else {
+            console.log("CURRENT SURVEYS", currentUserSurveys);
             res.render("../Views/mySurveys/mySurveys.ejs", {
                 title: "Home",
-                survey: surveys,
+                survey: currentUserSurveys,
                 displayName: Util_1.UserDisplayName(req),
                 currentUser: currentUser
             });
@@ -79,7 +80,6 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
             "surveyCategory": surveyType,
             "publicValue": publicValue,
             "surveyType": format,
-            "surveyAuthor": currentUser.username
         });
         console.log("NEW SURVEY CREATED", newSurvey.id, "surveyAuthor", currentUser);
         currentID = newSurvey.id;
@@ -114,7 +114,7 @@ router.post("/surveyEditor", (req, res, next) => __awaiter(void 0, void 0, void 
         let SurveyQuestions = [...buildMap(QuestionTitle, surveyQuestionType)];
         ;
         SurveyQuestions.map((question, index) => __awaiter(void 0, void 0, void 0, function* () {
-            yield survey_1.default.findOneAndUpdate({ _id: currentID }, { $push: { questions: question } });
+            yield survey_1.default.findOneAndUpdate({ _id: currentID }, { $push: { questions: question, surveyAuthor: currentUser } });
         }));
     }
     catch (error) {
@@ -144,7 +144,8 @@ router.post('/login', (req, res, next) => {
         }
         if (!user) {
             req.flash('loginMessage', 'Authentication Error');
-            currentUser = user;
+            currentUser = user.username;
+            console.log("USER ", user.username);
             return res.redirect("/mySurveys");
         }
         req.login(user, (err) => {
@@ -152,7 +153,8 @@ router.post('/login', (req, res, next) => {
                 console.error(err);
                 return next(err);
             }
-            currentUser = user;
+            currentUser = user.username;
+            console.log("USER ", user.username);
             return res.redirect("/mySurveys");
         });
     })(req, res, next);
