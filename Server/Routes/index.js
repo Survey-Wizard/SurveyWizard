@@ -55,6 +55,41 @@ router.get("/createSurvey", (req, res, next) => {
         displayName: Util_1.UserDisplayName(req)
     });
 });
+router.post("/survey/edit/:id", (req, res, next) => {
+    let id = req.params.id;
+    let surveyName = req.body.title;
+    let surveyType = req.body.surveyType;
+    let publicValue = req.body.publicValue;
+    let questonTitle = req.body.questonTitle;
+    let surveyQuestionType = req.body.surveyQuestionType;
+    console.log("POST VALUES", questonTitle, surveyQuestionType, surveyName, surveyType, publicValue);
+    const buildMap = (QuestionTitle, surveyQuestionType) => {
+        const map = new Map();
+        for (let i = 0; i < QuestionTitle.length; i++) {
+            map.set(questonTitle[i], surveyQuestionType[i]);
+        }
+        ;
+        return map;
+    };
+    let SurveyQuestions = [...buildMap(questonTitle, surveyQuestionType)];
+    function renderNewQuestions() {
+        return SurveyQuestions.map((question, index) => {
+            return question;
+        });
+    }
+    let updatedQuestion = new survey_1.default({
+        "_id": id,
+        "surveyName": surveyName,
+        "surveyCategory": surveyType,
+        "publicValue": publicValue,
+        "surveyType": surveyQuestionType,
+        "questions": renderNewQuestions()
+    });
+    survey_1.default.updateOne({ _id: id }, updatedQuestion, (err) => {
+        console.log("UPDATED QUESTION");
+        res.redirect("/mySurveys");
+    });
+});
 router.get("/survey/edit/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let id = req.params.id;
     console.log("Editing Survey with id of:", id);
