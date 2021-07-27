@@ -42,7 +42,8 @@ router.get("/mySurveys", (req, res, next) => {
             res.render("../Views/mySurveys/mySurveys.ejs", {
                 title: "Home",
                 survey: surveys,
-                displayName: Util_1.UserDisplayName(req)
+                displayName: Util_1.UserDisplayName(req),
+                currentUser: currentUser
             });
         }
     });
@@ -72,14 +73,15 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
         let surveyName = req.body.title;
         let surveyType = req.body.surveyType;
         let publicValue = req.body.publicValue;
-        let format = "Some surveyType";
+        let format = "Some Formatt New";
         let newSurvey = yield survey_1.default.create({
             "surveyName": surveyName,
             "surveyCategory": surveyType,
             "publicValue": publicValue,
-            "surveyType": format
+            "surveyType": format,
+            "surveyAuthor": currentUser.username
         });
-        console.log("NEW SURVEY CREATED", newSurvey.id);
+        console.log("NEW SURVEY CREATED", newSurvey.id, "surveyAuthor", currentUser);
         currentID = newSurvey.id;
         console.log("CURRENT ID", currentID);
         res.redirect('/surveyEditor');
@@ -142,6 +144,7 @@ router.post('/login', (req, res, next) => {
         }
         if (!user) {
             req.flash('loginMessage', 'Authentication Error');
+            currentUser = user;
             return res.redirect("/mySurveys");
         }
         req.login(user, (err) => {
@@ -149,6 +152,7 @@ router.post('/login', (req, res, next) => {
                 console.error(err);
                 return next(err);
             }
+            currentUser = user;
             return res.redirect("/mySurveys");
         });
     })(req, res, next);

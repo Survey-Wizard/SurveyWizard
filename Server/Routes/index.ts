@@ -14,7 +14,7 @@ export default router;
 import Survey from "../Models/survey";
 
 let currentID = "";
-let currentUser = ""
+let currentUser = "";
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -42,7 +42,8 @@ router.get("/mySurveys", (req, res, next) => {
       res.render("../Views/mySurveys/mySurveys.ejs", {
         title: "Home",
         survey: surveys,
-        displayName: UserDisplayName(req)
+        displayName: UserDisplayName(req),
+        currentUser: currentUser
       });
     }
   })
@@ -78,16 +79,17 @@ router.post("/createSurvey", async(req, res, next) => {
   console.log(req.body);
   let surveyName = req.body.title;
   let surveyType = req.body.surveyType;
-  let publicValue = req.body.publicValue
-  let format = "Some surveyType";
+  let publicValue = req.body.publicValue;
+  let format = "Some Formatt New";
 
     let newSurvey = await Survey.create({
       "surveyName": surveyName,
       "surveyCategory": surveyType,
       "publicValue": publicValue,
-      "surveyType": format
+      "surveyType": format, 
+      "surveyAuthor": currentUser.username
     })
-    console.log("NEW SURVEY CREATED", newSurvey.id)
+    console.log("NEW SURVEY CREATED", newSurvey.id, "surveyAuthor", currentUser);
     currentID = newSurvey.id;
     console.log("CURRENT ID", currentID)
     res.redirect('/surveyEditor');
@@ -182,6 +184,7 @@ router.post('/login', (req, res, next) => {
     if(!user)
     {
         req.flash('loginMessage', 'Authentication Error');
+        currentUser = user;
         return res.redirect("/mySurveys");
     }
 
@@ -193,7 +196,7 @@ router.post('/login', (req, res, next) => {
             console.error(err);
             return next(err);
         }
-        
+        currentUser = user;
         return res.redirect("/mySurveys");
 
     });

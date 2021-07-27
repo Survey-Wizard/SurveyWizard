@@ -7,7 +7,7 @@ const SurveySchema = new Schema
   surveyCategory: { type: String, required: true },
   publicValue: { type: String, required: true },
   surveyType: { type: String, required: true },
-
+  surveyAuthor: {type: String},
 
   questions: {},
   respones: {type: String},
@@ -17,7 +17,6 @@ const SurveySchema = new Schema
       default: Date.now(),
       expire: new Date(2021, 8, 20)
   },
-  owner: String
 },
 {
     collection: "survey"
