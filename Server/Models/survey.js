@@ -11,13 +11,13 @@ const SurveySchema = new Schema({
     publicValue: { type: String, required: true },
     surveyType: { type: String, required: true },
     surveyAuthor: { type: String },
+    timeLeft: {},
     questions: {},
     respones: { type: String },
     active: Boolean,
     lifeSpan: {
         type: Date,
         default: Date.now(),
-        expire: new Date(2021, 8, 20)
     },
 }, {
     collection: "survey"

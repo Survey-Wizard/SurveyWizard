@@ -18,6 +18,7 @@ let currentUser = "";
 
 /* GET home page */
 router.get("/", (req, res, next) => {
+
   res.render("../Views/Content/index.ejs", {
     title: "Home",
     displayName: UserDisplayName(req)
@@ -34,26 +35,13 @@ router.get("/explorePage", (req, res, next) => {
 
 /*GET mySurveys page*/
 router.get("/mySurveys", (req, res, next) => {
-  // Survey.find((err, surveys) => {
-  //   if(err) {
-  //     return console.log(err);
-  //   }
-  //   else {
-  //     res.render("../Views/mySurveys/mySurveys.ejs", {
-  //       title: "Home",
-  //       survey: surveys,
-  //       displayName: UserDisplayName(req),
-  //       currentUser: currentUser
-  //     });
-  //   }
-  // })
-
   Survey.find({surveyAuthor: currentUser}, function (err: any, currentUserSurveys: any) {
     if(err) {
       return console.log(err);
     }
     else {
       console.log("CURRENT SURVEYS", currentUserSurveys)
+      // console.log("Here is the survey", Survey.collection.createIndex({"lastModified": 1}, {expireAfterSeconds: 30 }))
       res.render("../Views/mySurveys/mySurveys.ejs", {
         title: "Home",
         survey: currentUserSurveys,
@@ -132,13 +120,26 @@ router.post("/createSurvey", async(req, res, next) => {
   let surveyType = req.body.surveyType;
   let publicValue = req.body.publicValue;
   let format = "Some Formatt New";
+  let startDate = new Date(req.body.startdate).getTime();
+  let endDate = new Date(req.body.enddate).getTime();
+
+  let timeLeft = endDate - startDate;
+    
+
+  console.log("Survey Start and End Date", startDate, endDate);
+  console.log("Time Left:", timeLeft)
 
     let newSurvey = await Survey.create({
       "surveyName": surveyName,
       "surveyCategory": surveyType,
       "publicValue": publicValue,
-      "surveyType": format, 
+      "surveyType": format,
+      "lifeSpan": "7/27/2021",
+      "timeLeft": timeLeft
+    
     })
+
+
     console.log("NEW SURVEY CREATED", newSurvey.id, "surveyAuthor", currentUser);
     currentID = newSurvey.id;
     console.log("CURRENT ID", currentID)

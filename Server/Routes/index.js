@@ -110,11 +110,18 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
         let surveyType = req.body.surveyType;
         let publicValue = req.body.publicValue;
         let format = "Some Formatt New";
+        let startDate = new Date(req.body.startdate).getTime();
+        let endDate = new Date(req.body.enddate).getTime();
+        let timeLeft = endDate - startDate;
+        console.log("Survey Start and End Date", startDate, endDate);
+        console.log("Time Left:", timeLeft);
         let newSurvey = yield survey_1.default.create({
             "surveyName": surveyName,
             "surveyCategory": surveyType,
             "publicValue": publicValue,
             "surveyType": format,
+            "lifeSpan": "7/27/2021",
+            "timeLeft": timeLeft
         });
         console.log("NEW SURVEY CREATED", newSurvey.id, "surveyAuthor", currentUser);
         currentID = newSurvey.id;
