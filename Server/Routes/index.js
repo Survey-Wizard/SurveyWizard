@@ -120,7 +120,6 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
             "surveyCategory": surveyType,
             "publicValue": publicValue,
             "surveyType": format,
-            "lifeSpan": "7/27/2021",
             "timeLeft": timeLeft
         });
         console.log("NEW SURVEY CREATED", newSurvey.id, "surveyAuthor", currentUser);
@@ -216,12 +215,12 @@ router.post('/register', (req, res, next) => {
     });
     user_1.default.register(newUser, req.body.password, (err) => {
         if (err) {
-            console.error('Error: Inserting New User');
+            console.error('Error, Inserting New User');
             if (err.name == "UserExistsError") {
                 console.error('Error: User Already Exists');
             }
             req.flash('registerMessage', 'Registration Error');
-            return res.redirect("/mySurveys");
+            return res.redirect("/register");
         }
         return passport_1.default.authenticate('local')(req, res, () => {
             return res.redirect("/mySurveys");

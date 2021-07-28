@@ -134,7 +134,7 @@ router.post("/createSurvey", async(req, res, next) => {
       "surveyCategory": surveyType,
       "publicValue": publicValue,
       "surveyType": format,
-      "lifeSpan": "7/27/2021",
+      // "lifeSpan": req.body.enddate,
       "timeLeft": timeLeft
     
     })
@@ -282,14 +282,14 @@ User.register(newUser, req.body.password, (err) =>
 {
     if(err)
     {
-        console.error('Error: Inserting New User');
+        console.error('Error, Inserting New User');
         if(err.name == "UserExistsError")
         {
             console.error('Error: User Already Exists');
         }
         req.flash('registerMessage', 'Registration Error');
-
-        return res.redirect("/mySurveys");   
+        
+        return res.redirect("/register");   
     }
     //after successful registration - login the user 
     return passport.authenticate('local')(req, res, () => {
