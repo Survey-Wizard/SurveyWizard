@@ -12,6 +12,7 @@ const router = express.Router();
 export default router;
 
 import Survey from "../Models/survey";
+import { error } from 'jquery';
 
 let currentID = "";
 let currentUser = "";
@@ -57,7 +58,8 @@ router.get("/mySurveys", (req, res, next) => {
 router.get("/createSurvey", (req, res, next) => {
   res.render("../Views/Survey/createSurvey/createSurvey.ejs", {
     title: "Home",
-     displayName: UserDisplayName(req)
+     displayName: UserDisplayName(req),
+    error: false
   });
 });
 router.post("/survey/edit/:id", (req, res, next) => {
@@ -122,7 +124,6 @@ router.post("/createSurvey", async(req, res, next) => {
   let format = "Some Formatt New";
   let startDate = new Date(req.body.startdate).getTime();
   let endDate = new Date(req.body.enddate).getTime();
-
   let timeLeft = endDate - startDate;
     
 
@@ -147,6 +148,9 @@ router.post("/createSurvey", async(req, res, next) => {
   }
   catch (error) {
     console.log("ERROR", error)
+    const createSurveyErrorMessage = error;
+
+    res.render("../Views/Survey/createSurvey/createSurvey.ejs", {error: true,  displayName: UserDisplayName(req)})
   }
 })
 

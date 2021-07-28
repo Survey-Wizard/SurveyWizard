@@ -10,11 +10,22 @@
       rel="stylesheet"
       href="/@fortawesome/fontawesome-free/css/all.min.css"
     />
-
+       <script src= 
+"https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+                integrity= 
+"sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+                crossorigin="anonymous"></script>
     <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/Content/app.css" />
   </head>
-
+    <% if(error === true) { %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="error-display">
+            Please make sure all Feilds are correctly filled out.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      <% } %>
   <body class="createSurvey-body">
     <div class="container" id="wrapper">
       <div class="createSurvey-container">
@@ -31,7 +42,7 @@
             />
 
             <select name="surveyType" id="cars">
-              <option value="Survey Category">Survey Category</option>
+              <option></option>
               <option value="Community or volunteer Feedback">Community or volunteer Feedback</option>
               <option value="Customer Feedback">Customer Feedback</option>
               <option value="Concept Production">Concept Production</option>

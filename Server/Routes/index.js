@@ -52,7 +52,8 @@ router.get("/mySurveys", (req, res, next) => {
 router.get("/createSurvey", (req, res, next) => {
     res.render("../Views/Survey/createSurvey/createSurvey.ejs", {
         title: "Home",
-        displayName: Util_1.UserDisplayName(req)
+        displayName: Util_1.UserDisplayName(req),
+        error: false
     });
 });
 router.post("/survey/edit/:id", (req, res, next) => {
@@ -130,6 +131,8 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
     }
     catch (error) {
         console.log("ERROR", error);
+        const createSurveyErrorMessage = error;
+        res.render("../Views/Survey/createSurvey/createSurvey.ejs", { error: true, displayName: Util_1.UserDisplayName(req) });
     }
 }));
 router.get("/surveyEditor", (req, res, next) => {

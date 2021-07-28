@@ -14,7 +14,7 @@ const SurveySchema = new Schema(
     publicValue: { type: String, required: true },
     surveyType: { type: String, required: true },
     surveyAuthor: { type: String },
-    timeLeft: {},
+    timeLeft: { type: Number, required: true },
     questions: {},
     respones: { type: String },
     active: Boolean,
