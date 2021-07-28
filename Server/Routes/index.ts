@@ -21,7 +21,7 @@ router.get("/", (req, res, next) => {
 
   res.render("../Views/Content/index.ejs", {
     title: "Home",
-    displayName: UserDisplayName(req)
+     displayName: UserDisplayName(req)
   });
 });
 
@@ -29,7 +29,7 @@ router.get("/", (req, res, next) => {
 router.get("/explorePage", (req, res, next) => {
   res.render("../Views/Explore/explore.ejs", {
     title: "Home",
-    displayName: UserDisplayName(req)
+   displayName: UserDisplayName(req)
   });
 });
 
@@ -45,7 +45,7 @@ router.get("/mySurveys", (req, res, next) => {
       res.render("../Views/mySurveys/mySurveys.ejs", {
         title: "Home",
         survey: currentUserSurveys,
-        displayName: UserDisplayName(req),
+         displayName: UserDisplayName(req),
        currentUser: currentUser
       })
     }
@@ -57,7 +57,7 @@ router.get("/mySurveys", (req, res, next) => {
 router.get("/createSurvey", (req, res, next) => {
   res.render("../Views/Survey/createSurvey/createSurvey.ejs", {
     title: "Home",
-    displayName: UserDisplayName(req)
+     displayName: UserDisplayName(req)
   });
 });
 router.post("/survey/edit/:id", (req, res, next) => {
@@ -107,7 +107,7 @@ router.get("/survey/edit/:id", async(req, res, next) => {
     res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
       survey: survey,
       surveyQuestions: surveyQuestions,
-      displayName: UserDisplayName(req)
+     displayName: UserDisplayName(req)
   });
 
 
@@ -154,7 +154,7 @@ router.post("/createSurvey", async(req, res, next) => {
 router.get("/surveyEditor", (req, res, next) => {
   res.render("../Views/Survey/surveyEditor/surveyEditor.ejs", {
     title: "Home",
-    displayName: UserDisplayName(req)
+     displayName: UserDisplayName(req)
   });
 });
 
@@ -216,7 +216,9 @@ router.get("/survey/delete/:id", (req, res, next) =>
 router.get("/login", (req, res, next) => {
   res.render("../Views/Authorization/login.ejs", {
     title: "Home",
-    displayName: UserDisplayName(req)
+     displayName: UserDisplayName(req),
+    error: false
+    
   });
 });
 
@@ -237,8 +239,8 @@ router.post('/login', (req, res, next) => {
     {
         req.flash('loginMessage', 'Authentication Error');
         currentUser = user.username;
-        console.log("USER ",user.username)
-        return res.redirect("/mySurveys");
+        console.log("USER ", user.username)
+        return res.render("../Views/Authorization/login.ejs", {error: true, displayName: UserDisplayName(req)})
     }
 
     req.login(user, (err) =>
@@ -247,7 +249,9 @@ router.post('/login', (req, res, next) => {
         if(err)
         {
             console.error(err);
-            return next(err);
+            return res.render("../Views/Authorization/login.ejs", {error: true})
+            // return next(err);
+
         }
         currentUser = user.username;
         console.log("USER ",user.username)
@@ -262,7 +266,7 @@ router.post('/login', (req, res, next) => {
 router.get("/register", (req, res, next) => {
   res.render("../Views/Authorization/register.ejs", {
     title: "Home",
-    displayName: UserDisplayName(req)
+     displayName: UserDisplayName(req)
   });
 });
 
@@ -303,7 +307,7 @@ router.get('/logout', (req, res, next) =>
 {
   req.logout();
 
-    res.redirect("/login");
+    res.redirect("/");
 }
 );
 

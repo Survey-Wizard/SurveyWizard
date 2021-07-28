@@ -175,7 +175,8 @@ router.get("/survey/delete/:id", (req, res, next) => {
 router.get("/login", (req, res, next) => {
     res.render("../Views/Authorization/login.ejs", {
         title: "Home",
-        displayName: Util_1.UserDisplayName(req)
+        displayName: Util_1.UserDisplayName(req),
+        error: false
     });
 });
 router.post('/login', (req, res, next) => {
@@ -188,12 +189,12 @@ router.post('/login', (req, res, next) => {
             req.flash('loginMessage', 'Authentication Error');
             currentUser = user.username;
             console.log("USER ", user.username);
-            return res.redirect("/mySurveys");
+            return res.render("../Views/Authorization/login.ejs", { error: true, displayName: Util_1.UserDisplayName(req) });
         }
         req.login(user, (err) => {
             if (err) {
                 console.error(err);
-                return next(err);
+                return res.render("../Views/Authorization/login.ejs", { error: true });
             }
             currentUser = user.username;
             console.log("USER ", user.username);
@@ -230,6 +231,6 @@ router.post('/register', (req, res, next) => {
 });
 router.get('/logout', (req, res, next) => {
     req.logout();
-    res.redirect("/login");
+    res.redirect("/");
 });
 //# sourceMappingURL=index.js.map

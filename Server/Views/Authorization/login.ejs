@@ -9,14 +9,25 @@
     <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
     <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
     <link rel='stylesheet' href='/Content/app.css' />
-
+       <script src= 
+"https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+                integrity= 
+"sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+                crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="row">
     <div class="offset-md-3 col-md-6 col-sm-12">
           <div class="login" id="contentArea">
               <h1 class="display-4">Login</h1>
-             
+           <% if(error === true) { %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="error-display">
+            Sign in Failed, please check Username and Password again.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      <% } %>
               <form id="loginForm" novalidate method="POST">
                 <div class="form-group">
                   <div class="input-group">
