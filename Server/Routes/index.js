@@ -120,6 +120,7 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
             "surveyCategory": surveyType,
             "publicValue": publicValue,
             "surveyType": format,
+            "lifeSpan": req.body.enddate,
             "timeLeft": timeLeft
         });
         console.log("NEW SURVEY CREATED", newSurvey.id, "surveyAuthor", currentUser);

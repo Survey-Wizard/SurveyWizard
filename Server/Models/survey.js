@@ -18,10 +18,10 @@ const SurveySchema = new Schema(
     questions: {},
     respones: { type: String },
     active: Boolean,
-    // lifeSpan: {
-    //   type: Date,
-    //   default: Date.now(),
-    // },
+    lifeSpan: {
+      type: Date,
+      default: Date.now(),
+    },
   },
   {
     collection: "survey",
