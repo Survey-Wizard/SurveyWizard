@@ -19,6 +19,7 @@ const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 exports.default = router;
 const survey_1 = __importDefault(require("../Models/survey"));
+const jquery_1 = require("jquery");
 let currentID = "";
 let currentUser = "";
 router.get("/", (req, res, next) => {
@@ -53,7 +54,8 @@ router.get("/createSurvey", (req, res, next) => {
     res.render("../Views/Survey/createSurvey/createSurvey.ejs", {
         title: "Home",
         displayName: Util_1.UserDisplayName(req),
-        error: false
+        error: false,
+        message: "no error"
     });
 });
 router.post("/survey/edit/:id", (req, res, next) => {
@@ -114,6 +116,12 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
         let startDate = new Date(req.body.startdate).getTime();
         let endDate = new Date(req.body.enddate).getTime();
         let timeLeft = endDate - startDate;
+        if (timeLeft < 0) {
+            res.render('../Views/Survey/createSurvey/createSurvey.ejs', { error: true, message: "start date can not be greater then end date", displayName: Util_1.UserDisplayName(req) });
+        }
+        else if (jquery_1.isEmptyObject(startDate)) {
+            res.render('../Views/Survey/createSurvey/createSurvey.ejs', { error: true, message: "please fill out the start and end dates", displayName: Util_1.UserDisplayName(req) });
+        }
         console.log("Survey Start and End Date", startDate, endDate);
         console.log("Time Left:", timeLeft);
         let newSurvey = yield survey_1.default.create({
@@ -132,7 +140,7 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
     catch (error) {
         console.log("ERROR", error);
         const createSurveyErrorMessage = error;
-        res.render("../Views/Survey/createSurvey/createSurvey.ejs", { error: true, displayName: Util_1.UserDisplayName(req) });
+        res.render("../Views/Survey/createSurvey/createSurvey.ejs", { error: true, displayName: Util_1.UserDisplayName(req), message: "please make sure all info is filled out correctly" });
     }
 }));
 router.get("/surveyEditor", (req, res, next) => {
@@ -192,7 +200,7 @@ router.post('/login', (req, res, next) => {
             req.flash('loginMessage', 'Authentication Error');
             currentUser = user.username;
             console.log("USER ", user.username);
-            return res.render("../Views/Authorization/login.ejs", { error: true, displayName: Util_1.UserDisplayName(req) });
+            return res.render("../Views/Authorization/login.ejs", { error: true, displayName: Util_1.UserDisplayName(req), message: "please make sure all info is filled out correclty" });
         }
         req.login(user, (err) => {
             if (err) {

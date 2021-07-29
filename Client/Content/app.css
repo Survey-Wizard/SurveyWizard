@@ -6,8 +6,7 @@
     margin-left: auto;
     margin-right: 20px;
     width: 25%;
-    display: grid;
-    grid-template-columns: auto auto;
+
 }
 .profile {
     border: 1px solid black;
@@ -89,7 +88,6 @@
 
 .footer {
     position: relative;
-  
     display: grid;
     grid-template-columns: auto auto;
     padding: 60px;
@@ -239,17 +237,19 @@ padding: 10px;
     font-size: 28px;
     font-weight: bold;
   }
-  
+  .btn-container {
+      border: 1px solid black;
+      width: 20%;
+      margin-left: auto;
+      margin-right: 50px;
+  }
   .close:hover,
   .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
   }
-.btn-container {
-   display: grid;
-   grid-template-columns: auto auto;
-}
+
 .nav-link {
     width: 130px;
     border: 1px solid black;
@@ -257,5 +257,10 @@ padding: 10px;
 
 #register {
     width: 130px;
+    border: 1px solid black;
+}
+
+#profile-dropdown {
+    margin-left: auto;
     border: 1px solid black;
 }

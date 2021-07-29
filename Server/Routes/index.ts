@@ -12,7 +12,8 @@ const router = express.Router();
 export default router;
 
 import Survey from "../Models/survey";
-import { error } from 'jquery';
+import { error, isEmptyObject } from 'jquery';
+import { start } from '@popperjs/core';
 
 let currentID = "";
 let currentUser = "";
@@ -59,7 +60,8 @@ router.get("/createSurvey", (req, res, next) => {
   res.render("../Views/Survey/createSurvey/createSurvey.ejs", {
     title: "Home",
      displayName: UserDisplayName(req),
-    error: false
+    error: false,
+    message: "no error"
   });
 });
 router.post("/survey/edit/:id", (req, res, next) => {
@@ -126,6 +128,12 @@ router.post("/createSurvey", async(req, res, next) => {
   let endDate = new Date(req.body.enddate).getTime();
   let timeLeft = endDate - startDate;
     
+  if(timeLeft < 0) {
+      res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "start date can not be greater then end date", displayName: UserDisplayName(req)})
+  }
+  else if(isEmptyObject(startDate)) {
+    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "please fill out the start and end dates", displayName: UserDisplayName(req)})
+  }
 
   console.log("Survey Start and End Date", startDate, endDate);
   console.log("Time Left:", timeLeft)
@@ -150,7 +158,7 @@ router.post("/createSurvey", async(req, res, next) => {
     console.log("ERROR", error)
     const createSurveyErrorMessage = error;
 
-    res.render("../Views/Survey/createSurvey/createSurvey.ejs", {error: true,  displayName: UserDisplayName(req)})
+    res.render("../Views/Survey/createSurvey/createSurvey.ejs", {error: true,  displayName: UserDisplayName(req),  message: "please make sure all info is filled out correctly"})
   }
 })
 
@@ -244,7 +252,7 @@ router.post('/login', (req, res, next) => {
         req.flash('loginMessage', 'Authentication Error');
         currentUser = user.username;
         console.log("USER ", user.username)
-        return res.render("../Views/Authorization/login.ejs", {error: true, displayName: UserDisplayName(req)})
+        return res.render("../Views/Authorization/login.ejs", {error: true, displayName: UserDisplayName(req),  message: "please make sure all info is filled out correclty"})
     }
 
     req.login(user, (err) =>
