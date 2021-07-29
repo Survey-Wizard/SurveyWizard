@@ -23,7 +23,8 @@ router.get("/", (req, res, next) => {
 
   res.render("../Views/Content/index.ejs", {
     title: "Home",
-     displayName: UserDisplayName(req)
+     displayName: UserDisplayName(req),
+     
   });
 });
 
@@ -31,7 +32,8 @@ router.get("/", (req, res, next) => {
 router.get("/explorePage", (req, res, next) => {
   res.render("../Views/Explore/explore.ejs", {
     title: "Home",
-   displayName: UserDisplayName(req)
+   displayName: UserDisplayName(req),
+  
   });
 });
 

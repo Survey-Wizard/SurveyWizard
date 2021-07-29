@@ -43,10 +43,10 @@
         <div class="navBar-options">
           <div class="btn-container">
 
-          <% if(displayName) { %>
+          <% if(displayName) { %>    
           <div class="btn-group">
              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Action
+                <%= currentUser %>
               </button>
             <div class="dropdown-menu">
             <button class="dropdown-item" type="button"><a class="nav-link " aria-current="page" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></button>

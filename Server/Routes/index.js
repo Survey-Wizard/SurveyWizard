@@ -24,13 +24,13 @@ let currentUser = "";
 router.get("/", (req, res, next) => {
     res.render("../Views/Content/index.ejs", {
         title: "Home",
-        displayName: Util_1.UserDisplayName(req)
+        displayName: Util_1.UserDisplayName(req),
     });
 });
 router.get("/explorePage", (req, res, next) => {
     res.render("../Views/Explore/explore.ejs", {
         title: "Home",
-        displayName: Util_1.UserDisplayName(req)
+        displayName: Util_1.UserDisplayName(req),
     });
 });
 router.get("/mySurveys", (req, res, next) => {
