@@ -24,7 +24,7 @@ router.get("/", (req, res, next) => {
   res.render("../Views/Content/index.ejs", {
     title: "Home",
      displayName: UserDisplayName(req),
-     
+     currentUser: currentUser
   });
 });
 
@@ -33,7 +33,7 @@ router.get("/explorePage", (req, res, next) => {
   res.render("../Views/Explore/explore.ejs", {
     title: "Home",
    displayName: UserDisplayName(req),
-  
+   currentUser: currentUser
   });
 });
 
@@ -47,10 +47,10 @@ router.get("/mySurveys", (req, res, next) => {
       console.log("CURRENT SURVEYS", currentUserSurveys)
       // console.log("Here is the survey", Survey.collection.createIndex({"lastModified": 1}, {expireAfterSeconds: 30 }))
       res.render("../Views/mySurveys/mySurveys.ejs", {
-        title: "Home",
-        survey: currentUserSurveys,
+         title: "Home",
+         survey: currentUserSurveys,
          displayName: UserDisplayName(req),
-       currentUser: currentUser
+         currentUser: currentUser
       })
     }
   })
@@ -63,7 +63,8 @@ router.get("/createSurvey", (req, res, next) => {
     title: "Home",
      displayName: UserDisplayName(req),
     error: false,
-    message: "no error"
+    message: "no error",
+    currentUser: currentUser
   });
 });
 router.post("/survey/edit/:id", (req, res, next) => {
@@ -113,7 +114,8 @@ router.get("/survey/edit/:id", async(req, res, next) => {
     res.render("../Views/EditSurveyQuestions/editSurveyQuestion.ejs", {
       survey: survey,
       surveyQuestions: surveyQuestions,
-     displayName: UserDisplayName(req)
+     displayName: UserDisplayName(req),
+     currentUser: currentUser
   });
 
 
@@ -132,19 +134,19 @@ router.post("/createSurvey", async(req, res, next) => {
   const CurrentDate = new Date;
     
   if(timeLeft < 0) {
-      res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "start date can not be greater then end date", displayName: UserDisplayName(req)})
+      res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "start date can not be greater then end date", displayName: UserDisplayName(req),   currentUser: currentUser})
   }
   else if(req.body.startdate === "") {
-    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "please fill out the start date", displayName: UserDisplayName(req)})
+    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "please fill out the start date", displayName: UserDisplayName(req),   currentUser: currentUser})
   }
   else if(req.body.enddate === "") {
-    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "please fill out the  end date", displayName: UserDisplayName(req)})
+    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "please fill out the  end date", displayName: UserDisplayName(req),   currentUser: currentUser})
   }
   else if (CurrentDate.getTime() <= startDate) {
-    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "can not start a survey in the past", displayName: UserDisplayName(req)})
+    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "can not start a survey in the past", displayName: UserDisplayName(req),   currentUser: currentUser})
   }
   else if (CurrentDate.getTime() > endDate) {
-    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "cannot have a survey end in the past", displayName: UserDisplayName(req)})
+    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "cannot have a survey end in the past", displayName: UserDisplayName(req),   currentUser: currentUser})
   }
 
   console.log("Survey Start and End Date", startDate, endDate);
@@ -164,13 +166,13 @@ router.post("/createSurvey", async(req, res, next) => {
     console.log("NEW SURVEY CREATED", newSurvey.id, "surveyAuthor", currentUser);
     currentID = newSurvey.id;
     console.log("CURRENT ID", currentID)
-    res.redirect('/surveyEditor');
+    res.render('../Views/Survey/surveyEditor/surveyEditor.ejs', {error: false, message: "cannot have a survey end in the past", displayName: UserDisplayName(req),   currentUser: currentUser});
   }
   catch (error) {
     console.log("ERROR", error)
     const createSurveyErrorMessage = error;
 
-    res.render("../Views/Survey/createSurvey/createSurvey.ejs", {error: true,  displayName: UserDisplayName(req),  message: "please make sure all info is filled out correctly"})
+    res.render("../Views/Survey/createSurvey/createSurvey.ejs", {error: true,  displayName: UserDisplayName(req),  message: "please make sure all info is filled out correctly",    currentUser: currentUser})
   }
 })
 
@@ -178,7 +180,8 @@ router.post("/createSurvey", async(req, res, next) => {
 router.get("/surveyEditor", (req, res, next) => {
   res.render("../Views/Survey/surveyEditor/surveyEditor.ejs", {
     title: "Home",
-     displayName: UserDisplayName(req)
+     displayName: UserDisplayName(req),
+     currentUser: currentUser
   });
 });
 
@@ -241,7 +244,8 @@ router.get("/login", (req, res, next) => {
   res.render("../Views/Authorization/login.ejs", {
     title: "Home",
      displayName: UserDisplayName(req),
-    error: false
+    error: false,
+    currentUser: currentUser
     
   });
 });
@@ -264,7 +268,7 @@ router.post('/login', (req, res, next) => {
         req.flash('loginMessage', 'Authentication Error');
         currentUser = user.username;
         console.log("USER ", user.username)
-        return res.render("../Views/Authorization/login.ejs", {error: true, displayName: UserDisplayName(req),  message: "please make sure all info is filled out correclty"})
+        return res.render("../Views/Authorization/login.ejs", {error: true, displayName: UserDisplayName(req),  message: "please make sure all info is filled out correclty",   currentUser: currentUser})
     }
 
     req.login(user, (err) =>
@@ -273,7 +277,7 @@ router.post('/login', (req, res, next) => {
         if(err)
         {
             console.error(err);
-            return res.render("../Views/Authorization/login.ejs", {error: true})
+            return res.render("../Views/Authorization/login.ejs", {error: true,    currentUser: currentUser})
             // return next(err);
 
         }
@@ -290,7 +294,8 @@ router.post('/login', (req, res, next) => {
 router.get("/register", (req, res, next) => {
   res.render("../Views/Authorization/register.ejs", {
     title: "Home",
-     displayName: UserDisplayName(req)
+     displayName: UserDisplayName(req),
+     currentUser: currentUser
   });
 });
 
