@@ -19,7 +19,6 @@ const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 exports.default = router;
 const survey_1 = __importDefault(require("../Models/survey"));
-const jquery_1 = require("jquery");
 let currentID = "";
 let currentUser = "";
 router.get("/", (req, res, next) => {
@@ -116,11 +115,21 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
         let startDate = new Date(req.body.startdate).getTime();
         let endDate = new Date(req.body.enddate).getTime();
         let timeLeft = endDate - startDate;
+        const CurrentDate = new Date;
         if (timeLeft < 0) {
             res.render('../Views/Survey/createSurvey/createSurvey.ejs', { error: true, message: "start date can not be greater then end date", displayName: Util_1.UserDisplayName(req) });
         }
-        else if (jquery_1.isEmptyObject(startDate)) {
-            res.render('../Views/Survey/createSurvey/createSurvey.ejs', { error: true, message: "please fill out the start and end dates", displayName: Util_1.UserDisplayName(req) });
+        else if (req.body.startdate === "") {
+            res.render('../Views/Survey/createSurvey/createSurvey.ejs', { error: true, message: "please fill out the start date", displayName: Util_1.UserDisplayName(req) });
+        }
+        else if (req.body.enddate === "") {
+            res.render('../Views/Survey/createSurvey/createSurvey.ejs', { error: true, message: "please fill out the  end date", displayName: Util_1.UserDisplayName(req) });
+        }
+        else if (CurrentDate.getTime() <= startDate) {
+            res.render('../Views/Survey/createSurvey/createSurvey.ejs', { error: true, message: "can not start a survey in the past", displayName: Util_1.UserDisplayName(req) });
+        }
+        else if (CurrentDate.getTime() > endDate) {
+            res.render('../Views/Survey/createSurvey/createSurvey.ejs', { error: true, message: "cannot have a survey end in the past", displayName: Util_1.UserDisplayName(req) });
         }
         console.log("Survey Start and End Date", startDate, endDate);
         console.log("Time Left:", timeLeft);

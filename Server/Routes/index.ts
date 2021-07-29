@@ -127,12 +127,22 @@ router.post("/createSurvey", async(req, res, next) => {
   let startDate = new Date(req.body.startdate).getTime();
   let endDate = new Date(req.body.enddate).getTime();
   let timeLeft = endDate - startDate;
+  const CurrentDate = new Date;
     
   if(timeLeft < 0) {
       res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "start date can not be greater then end date", displayName: UserDisplayName(req)})
   }
-  else if(isEmptyObject(startDate)) {
-    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "please fill out the start and end dates", displayName: UserDisplayName(req)})
+  else if(req.body.startdate === "") {
+    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "please fill out the start date", displayName: UserDisplayName(req)})
+  }
+  else if(req.body.enddate === "") {
+    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "please fill out the  end date", displayName: UserDisplayName(req)})
+  }
+  else if (CurrentDate.getTime() <= startDate) {
+    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "can not start a survey in the past", displayName: UserDisplayName(req)})
+  }
+  else if (CurrentDate.getTime() > endDate) {
+    res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "cannot have a survey end in the past", displayName: UserDisplayName(req)})
   }
 
   console.log("Survey Start and End Date", startDate, endDate);
