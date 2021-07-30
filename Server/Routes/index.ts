@@ -142,7 +142,7 @@ router.post("/createSurvey", async(req, res, next) => {
   else if(req.body.enddate === "") {
     res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "please fill out the  end date", displayName: UserDisplayName(req),   currentUser: currentUser})
   }
-  else if (CurrentDate.getTime() >= startDate) {
+  else if (CurrentDate.getTime() > startDate) {
     res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "can not start a survey in the past", displayName: UserDisplayName(req),   currentUser: currentUser})
   }
   else if (CurrentDate.getTime() > endDate) {
