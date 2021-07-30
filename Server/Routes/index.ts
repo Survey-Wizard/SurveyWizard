@@ -161,10 +161,10 @@ router.post("/createSurvey", async(req, res, next) => {
       "surveyCategory": surveyType,
       "publicValue": publicValue,
       "surveyType": format,
-        "lifeSpan": req.body.enddate,
-     "timeLeft": timeLeft
-      // "lifeSpan": 15,
-      // "timeLeft": 15
+    //   "lifeSpan": req.body.enddate,
+    //  "timeLeft": timeLeft
+      "lifeSpan": 15,
+      "timeLeft": 15
     
     })
 
