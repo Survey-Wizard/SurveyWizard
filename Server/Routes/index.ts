@@ -132,6 +132,7 @@ router.post("/createSurvey", async(req, res, next) => {
   let endDate = new Date(req.body.enddate).getTime();
   let timeLeft = endDate - startDate;
   const CurrentDate = new Date;
+  CurrentDate.setHours(0, 0, 0, 0);
     
   if(timeLeft < 0) {
       res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "start date can not be greater then end date", displayName: UserDisplayName(req),   currentUser: currentUser})
@@ -142,9 +143,12 @@ router.post("/createSurvey", async(req, res, next) => {
   else if(req.body.enddate === "") {
     res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "please fill out the  end date", displayName: UserDisplayName(req),   currentUser: currentUser})
   }
+
   else if (CurrentDate.getTime() > startDate) {
     res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "can not start a survey in the past", displayName: UserDisplayName(req),   currentUser: currentUser})
+    console.log(startDate, CurrentDate.getTime())
   }
+
   else if (CurrentDate.getTime() > endDate) {
     res.render('../Views/Survey/createSurvey/createSurvey.ejs', {error: true, message: "cannot have a survey end in the past", displayName: UserDisplayName(req),   currentUser: currentUser})
   }
@@ -157,8 +161,10 @@ router.post("/createSurvey", async(req, res, next) => {
       "surveyCategory": surveyType,
       "publicValue": publicValue,
       "surveyType": format,
-      "lifeSpan": 15,
-      "timeLeft": 15
+        "lifeSpan": req.body.enddate,
+     "timeLeft": timeLeft
+      // "lifeSpan": 15,
+      // "timeLeft": 15
     
     })
 
