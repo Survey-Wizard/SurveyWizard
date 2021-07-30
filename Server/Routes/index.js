@@ -129,7 +129,7 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
         else if (req.body.enddate === "") {
             res.render('../Views/Survey/createSurvey/createSurvey.ejs', { error: true, message: "please fill out the  end date", displayName: Util_1.UserDisplayName(req), currentUser: currentUser });
         }
-        else if (CurrentDate.getTime() <= startDate) {
+        else if (CurrentDate.getTime() >= startDate) {
             res.render('../Views/Survey/createSurvey/createSurvey.ejs', { error: true, message: "can not start a survey in the past", displayName: Util_1.UserDisplayName(req), currentUser: currentUser });
         }
         else if (CurrentDate.getTime() > endDate) {
@@ -142,8 +142,8 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
             "surveyCategory": surveyType,
             "publicValue": publicValue,
             "surveyType": format,
-            "lifeSpan": req.body.enddate,
-            "timeLeft": timeLeft
+            "lifeSpan": 15,
+            "timeLeft": 15
         });
         console.log("NEW SURVEY CREATED", newSurvey.id, "surveyAuthor", currentUser);
         currentID = newSurvey.id;
