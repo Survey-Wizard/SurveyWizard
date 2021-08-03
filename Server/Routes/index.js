@@ -40,10 +40,19 @@ router.get("/", (req, res, next) => {
     });
 });
 router.get("/explorePage", (req, res, next) => {
-    res.render("../Views/Explore/explore.ejs", {
-        title: "Home",
-        displayName: Util_1.UserDisplayName(req),
-        currentUser: currentUser
+    survey_1.default.find({ publicValue: true }, function (err, publicSurveys) {
+        if (err) {
+            console.log("error with displayig survyes", err);
+        }
+        else {
+            console.log("found some surtve", publicSurveys);
+            res.render("../Views/Explore/explore.ejs", {
+                title: "Home",
+                displayName: Util_1.UserDisplayName(req),
+                currentUser: currentUser,
+                publicSurveys: publicSurveys
+            });
+        }
     });
 });
 router.get("/mySurveys", (req, res, next) => {
@@ -106,6 +115,18 @@ router.post("/survey/edit/:id", (req, res, next) => {
         res.redirect("/mySurveys");
     });
 });
+router.get("/fillOutSurvey/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    let id = req.params.id;
+    console.log("Completeing Survey");
+    let completeSurvey = yield survey_1.default.findById(id);
+    let completeSurveyQuestions = completeSurvey.questions;
+    console.log("complete survey Questions", completeSurveyQuestions);
+    res.render("../Views/FillOutSurvey/fillOutSurvey.ejs", {
+        displayName: Util_1.UserDisplayName(req),
+        currentUser: currentUser,
+        completeSurveyQuestions: completeSurveyQuestions
+    });
+}));
 router.get("/survey/edit/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let id = req.params.id;
     console.log("Editing Survey with id of:", id);

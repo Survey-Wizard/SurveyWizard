@@ -1,0 +1,74 @@
+<%- include('../../Views/Partials/header/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
+    <link rel='stylesheet' href='/Content/app.css' />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@200&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+<div class="container" id="complete-survey-container">
+<header class="survey title"> Survey Title Goes Here</header>        
+<div class="row" id="question-container">
+<form action="/surveyEditor" method="post"  id="create-question">
+<% completeSurveyQuestions.forEach(function(element) { %>
+      <div class="row" id="question-container">
+    <div class="col">
+      <%= element[0] %>
+    </div> 
+   <div class="col">
+    <% switch (element[1]) {
+case 'Text-Box' : %>
+           <input type="text" class="radio" name="x" placeholder="Answer" id="y" />
+        <% break;
+
+case 'Radio-Buttons' : %>
+    <fieldset>
+      <div class="some-class">
+        <input type="radio" class="radio" name="x" value="y" id="y" />
+        <label for="y">Answer 1 </label>
+        <input type="radio" class="radio" name="x" value="z" id="z" />
+        <label for="z">Answer 2</label>
+        <input type="radio" class="radio" name="x" value="y" id="y" />
+        <label for="y">Answer 1</label>
+        <input type="radio" class="radio" name="x" value="z" id="z" />
+        <label for="z">Answer 2</label>
+      </div>
+    </fieldset>
+        <% break;
+
+case 'Multiple-Choice' : %>
+        
+        <% break;
+
+ case 'Star-Rating' : %>
+        Star Rating 
+        <% break;
+} %>
+    </div> 
+    </div>
+ <% }) %> 
+
+
+ 
+     <div class="complete-btn">
+        <button class="submit-survey">
+            Submit Survey
+        </button>
+        </div>
+        </div>
+    </form>
+</div>
+    </body>
+</html>
+
+<%- include('../../Views/Partials/footer/footer.ejs') %>

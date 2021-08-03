@@ -10,6 +10,10 @@
     <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
     <link rel='stylesheet' href='/Content/app.css' />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@200&display=swap" rel="stylesheet">
+
 </head>
 
 
@@ -27,12 +31,28 @@
                 <tr>
                   <th>Title</th>
                   <th class="text-center">#</th>
+                  <th class="text-center">Enpire time </th>
                   <th class="text-center">Take Survey</th>
                 </tr>
                 </thead>
                 <tbody>
+                  <% for(let count=0; count < publicSurveys.length; count++) { %>
+                    <tr>
+                        <th scope="row">Title</th>
+                        <td>
+                           number
+                        </td>
+                          <td class="text-center">
+                      expire time
+                        </td>
+                        <td class="text-center">
+                        <a href="/fillOutSurvey/<%=publicSurveys[count]._id %>" class="btn btn-primary btn-sm edit"> Compelte Survey</a>
+                        </td>
+                    </tr>      
+
+                  <% } %>
                 <!-- Template Row -->
-             
+
               </tbody>
             </table>
           </div>

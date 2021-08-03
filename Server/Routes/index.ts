@@ -50,11 +50,21 @@ router.get("/", (req, res, next) => {
 
 /*GET explore page*/
 router.get("/explorePage", (req, res, next) => {
-  res.render("../Views/Explore/explore.ejs", {
-    title: "Home",
-   displayName: UserDisplayName(req),
-   currentUser: currentUser
-  });
+  Survey.find({publicValue: true}, function (err: any, publicSurveys:any ) {
+    if (err) {
+      console.log("error with displayig survyes", err)
+    }
+    else {
+      console.log("found some surtve", publicSurveys)
+      res.render("../Views/Explore/explore.ejs", {
+       title: "Home",
+       displayName: UserDisplayName(req),
+       currentUser: currentUser,
+       publicSurveys: publicSurveys
+      });
+    }
+  })
+
 });
 
 /*GET mySurveys page*/
@@ -124,6 +134,21 @@ router.post("/survey/edit/:id", (req, res, next) => {
  })
  
  });
+
+ router.get("/fillOutSurvey/:id", async(req, res, next) => {
+  let id = req.params.id;
+  console.log("Completeing Survey");
+
+  let completeSurvey = await Survey.findById(id);
+  let completeSurveyQuestions  = completeSurvey.questions;
+
+  console.log("complete survey Questions", completeSurveyQuestions)
+  res.render("../Views/FillOutSurvey/fillOutSurvey.ejs", {
+    displayName: UserDisplayName(req),
+    currentUser: currentUser,
+    completeSurveyQuestions: completeSurveyQuestions
+  });
+ })
 
 router.get("/survey/edit/:id", async(req, res, next) => {
   let id = req.params.id;
