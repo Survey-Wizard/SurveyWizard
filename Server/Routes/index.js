@@ -22,10 +22,21 @@ const survey_1 = __importDefault(require("../Models/survey"));
 let currentID = "";
 let currentUser = "";
 router.get("/", (req, res, next) => {
+    let num = 0;
+    let array = ["Are my customers happy?", "Are my customers actually satistified", "Are my employees happy at work", "do people like attending my events", "Do customers like our prodect?"];
+    setInterval(function () {
+        num = Math.floor(Math.random() * 5);
+        console.log(num);
+    }, 4000);
+    function shuffle(value) {
+        console.log(value);
+        return array[value];
+    }
     res.render("../Views/Content/index.ejs", {
         title: "Home",
         displayName: Util_1.UserDisplayName(req),
-        currentUser: currentUser
+        currentUser: currentUser,
+        textDisplay: shuffle(num),
     });
 });
 router.get("/explorePage", (req, res, next) => {
@@ -144,8 +155,8 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
             "surveyCategory": surveyType,
             "publicValue": publicValue,
             "surveyType": format,
-            "lifeSpan": 15,
-            "timeLeft": 15
+            "lifeSpan": req.body.enddate,
+            "timeLeft": timeLeft
         });
         console.log("NEW SURVEY CREATED", newSurvey.id, "surveyAuthor", currentUser);
         currentID = newSurvey.id;

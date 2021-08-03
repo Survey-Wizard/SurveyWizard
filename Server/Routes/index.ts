@@ -7,10 +7,9 @@ import User from '../Models/user'
 import { UserDisplayName, AuthGuard } from '../Util';
 
 // modules required for routing
-import express from "express";
+import express, { text } from "express";
 const router = express.Router();
 export default router;
-
 import Survey from "../Models/survey";
 import { error, isEmptyObject } from 'jquery';
 import { start } from '@popperjs/core';
@@ -21,11 +20,32 @@ let currentUser = "";
 /* GET home page */
 router.get("/", (req, res, next) => {
 
+  let num = 0;
+  let array = ["Are my customers happy?", "Are my customers actually satistified", "Are my employees happy at work", "do people like attending my events", "Do customers like our prodect?"]
+  setInterval(function(){   
+    num =  Math.floor(Math.random() * 5); 
+    console.log(num)
+ }, 4000);
+
+  function shuffle(value: any) {
+    
+            
+     console.log(value)
+ 
+      return array[value]
+
+  
+ 
+  }
+  
   res.render("../Views/Content/index.ejs", {
-    title: "Home",
+     title: "Home",
      displayName: UserDisplayName(req),
-     currentUser: currentUser
+     currentUser: currentUser,
+     textDisplay: shuffle(num),
+  
   });
+
 });
 
 /*GET explore page*/
@@ -161,10 +181,10 @@ router.post("/createSurvey", async(req, res, next) => {
       "surveyCategory": surveyType,
       "publicValue": publicValue,
       "surveyType": format,
-    //   "lifeSpan": req.body.enddate,
-    //  "timeLeft": timeLeft
-      "lifeSpan": 15,
-      "timeLeft": 15
+      "lifeSpan": req.body.enddate,
+     "timeLeft": timeLeft
+      // "lifeSpan": 15,
+      // "timeLeft": 15
     
     })
 
