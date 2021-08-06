@@ -245,10 +245,10 @@ padding: 10px;
   
 }
 .survey-title {
-    border: 1px rgb(90, 24, 154);
+    border: 1px solid green;
 }
 .create-question {
-    border: 1px rgb(255, 149, 0);
+    border: 1px solid orange;
 }
 .question-container {
     margin-top: 10px;
@@ -466,7 +466,7 @@ fieldset {
   }
 @keyframes typewriter {
     from {
-        width: 0rem;
+        width: 1rem;
     }
     to {
         width: 16rem;
