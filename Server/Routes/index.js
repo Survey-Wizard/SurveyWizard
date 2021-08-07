@@ -115,8 +115,20 @@ router.post("/survey/edit/:id", (req, res, next) => {
         res.redirect("/mySurveys");
     });
 });
+router.post("/fillOutSurvey/:id", (req, res, body) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body);
+    let surveyAnswers = [req.body.multiSelect, req.body.radio1, req.body.textBox, req.body.rate3];
+    console.log("answers", surveyAnswers);
+    let responces = yield survey_1.default.findById({ _id: currentID });
+    survey_1.default.updateOne({ _id: currentID }, { responses: responces.responses + 1 }, (err) => {
+        console.log("RESPONCE HAS BE UPDATED");
+    });
+    console.log(" SURVEY RESPONCE", responces);
+    res.redirect("/explorePage");
+}));
 router.get("/fillOutSurvey/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let id = req.params.id;
+    currentID = id;
     console.log("Completeing Survey");
     let completeSurvey = yield survey_1.default.findById(id);
     let completeSurveyQuestions = completeSurvey.questions;
@@ -177,7 +189,8 @@ router.post("/createSurvey", (req, res, next) => __awaiter(void 0, void 0, void 
             "publicValue": publicValue,
             "surveyType": format,
             "lifeSpan": req.body.enddate,
-            "timeLeft": timeLeft
+            "timeLeft": timeLeft,
+            "responses": 0
         });
         console.log("NEW SURVEY CREATED", newSurvey.id, "surveyAuthor", currentUser);
         currentID = newSurvey.id;

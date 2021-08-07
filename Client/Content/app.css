@@ -437,10 +437,68 @@ padding: 10px;
 
 #complete-survey-container {
     border: 1px solid black;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: auto;
+}
+.surveytitle {
+    text-align: center;
+    padding: 10px;
 }
 #question-container {
-    border: 1px solid black;
+    margin-left: 0px;
+    padding: 10px;
+    width: auto;
+    border: 1px solid red;
     height: fit-content;
+}
+.complete-btn {
+    border: 1px solid black;
+    text-align: center;
+}
+.textbox {
+    width: 100%;
+}
+label {
+    margin-top: -5px;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
 }
 fieldset {
     overflow: hidden

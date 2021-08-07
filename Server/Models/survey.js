@@ -13,7 +13,7 @@ const SurveySchema = new Schema({
     surveyAuthor: { type: String },
     timeLeft: {},
     questions: {},
-    respones: { type: String },
+    responses: {},
     active: Boolean,
     lifeSpan: {
         type: Date,

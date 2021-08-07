@@ -134,9 +134,42 @@ router.post("/survey/edit/:id", (req, res, next) => {
  })
  
  });
+router.post("/fillOutSurvey/:id", async(req, res, body) => {
+  // let id = req.params.id;
+  // let surveyName = req.body.title;
+  //  let surveyType = req.body.surveyType;
+  //  let publicValue = req.body.publicValue;
+  // let questonTitle = req.body.questonTitle;
+  //  let surveyQuestionType = req.body.surveyQuestionType;
+  //  let responces = req.body.respones;
 
+  //  let FilledOutSurveyComplete = new Survey ({
+  //   "_id": id,
+  //   "surveyName": surveyName,
+  //   "surveyCategory": surveyType,
+  //   "publicValue": publicValue,
+  //   "surveyType": surveyQuestionType,
+  //   "respones": 1
+  // })
+
+  console.log(req.body)
+
+  let surveyAnswers = [req.body.multiSelect, req.body.radio1, req.body.textBox, req.body.rate3 ]
+  
+  console.log("answers", surveyAnswers);
+  //find survey id and update the complete value. 
+  let responces = await Survey.findById({_id: currentID})
+
+  Survey.updateOne({_id: currentID}, {responses: responces.responses + 1}, (err) => {
+    console.log("RESPONCE HAS BE UPDATED")
+  })
+
+    console.log(" SURVEY RESPONCE",  responces);
+    res.redirect("/explorePage");
+})
  router.get("/fillOutSurvey/:id", async(req, res, next) => {
   let id = req.params.id;
+  currentID = id;
   console.log("Completeing Survey");
 
   let completeSurvey = await Survey.findById(id);
@@ -207,7 +240,8 @@ router.post("/createSurvey", async(req, res, next) => {
       "publicValue": publicValue,
       "surveyType": format,
       "lifeSpan": req.body.enddate,
-     "timeLeft": timeLeft
+     "timeLeft": timeLeft,
+     "responses": 0
       // "lifeSpan": 15,
       // "timeLeft": 15
     
@@ -235,6 +269,7 @@ router.get("/surveyEditor", (req, res, next) => {
      currentUser: currentUser
   });
 });
+
 
 router.post("/surveyEditor", async(req, res, next) => {
 console.log(req.body);

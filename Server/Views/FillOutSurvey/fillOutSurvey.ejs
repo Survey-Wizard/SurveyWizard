@@ -17,9 +17,9 @@
     </head>
     <body>
 <div class="container" id="complete-survey-container">
-<header class="survey title"> Survey Title Goes Here</header>        
-<div class="row" id="question-container">
-<form action="/surveyEditor" method="post"  id="create-question">
+<header class="surveytitle"> Survey Title Goes Here</header>        
+<div class="row" id="question-container1">
+<form action="/fillOutSurvey/:id" method="post"  id="create-question">
 <% completeSurveyQuestions.forEach(function(element) { %>
       <div class="row" id="question-container">
     <div class="col">
@@ -28,30 +28,58 @@
    <div class="col">
     <% switch (element[1]) {
 case 'Text-Box' : %>
-           <input type="text" class="radio" name="x" placeholder="Answer" id="y" />
+  <fieldset>
+           <input type="text" class="textbox" name="textBox" placeholder="Answer" id="y" />
+  </fieldset>
         <% break;
 
 case 'Radio-Buttons' : %>
     <fieldset>
       <div class="some-class">
-        <input type="radio" class="radio" name="x" value="y" id="y" />
-        <label for="y">Answer 1 </label>
-        <input type="radio" class="radio" name="x" value="z" id="z" />
-        <label for="z">Answer 2</label>
-        <input type="radio" class="radio" name="x" value="y" id="y" />
-        <label for="y">Answer 1</label>
-        <input type="radio" class="radio" name="x" value="z" id="z" />
-        <label for="z">Answer 2</label>
+        <input type="radio" class="radio" name="radio" value="Strongly agree" id="y" />
+        <label for="y">Radio 1 </label>
+        <input type="radio" class="radio" name="radio" value="Agree" id="z" />
+        <label for="z">Radio 2</label>
+        <input type="radio" class="radio" name="radio" value="Neither agree nor disagree" id="y" />
+        <label for="y">Radio 1</label>
+        <input type="radio" class="radio" name="radio" value="Disagree" id="z" />
+        <label for="z">Radio 2</label>
+        <input type="radio" class="radio" name="radio" value="Strongly disagree" id="z" />
+        <label for="z">Radio 2</label>
       </div>
     </fieldset>
         <% break;
 
 case 'Multiple-Choice' : %>
-        
+            <fieldset>
+      <div class="some-class">
+        <input type="checkbox" class="radio" name="multiSelect" value="Not at all" id="y" />
+        <label for="y">Answer 1 </label>
+        <input type="checkbox" class="radio" name="multiSelect" value="Yearly" id="z" />
+        <label for="z">Answer 2</label>
+        <input type="checkbox" class="radio" name="multiSelect" value="A few times a year" id="y" />
+        <label for="y">Answer 1</label>
+        <input type="checkbox" class="radio" name="multiSelect" value="A few times a month" id="z" />
+        <label for="z">Answer 2</label>
+        <input type="checkbox" class="radio" name="multiSelect" value="Weekly" id="z" />
+        <label for="z">Answer 2</label>
+      </div>
+        </fieldset>
         <% break;
 
  case 'Star-Rating' : %>
-        Star Rating 
+        <div class="rate">
+    <input type="radio" id="star5" name="rate" value="5-star" />
+    <label for="star5" title="text">5 stars</label>
+    <input type="radio" id="star4" name="rate" value="4-star" />
+    <label for="star4" title="text">4 stars</label>
+    <input type="radio" id="star3" name="rate" value="3-star" />
+    <label for="star3" title="text">3 stars</label>
+    <input type="radio" id="star2" name="rate" value="2-star" />
+    <label for="star2" title="text">2 stars</label>
+    <input type="radio" id="star1" name="rate" value="1-star" />
+    <label for="star1" title="text">1 star</label>
+        </div>
         <% break;
 } %>
     </div> 
@@ -61,7 +89,7 @@ case 'Multiple-Choice' : %>
 
  
      <div class="complete-btn">
-        <button class="submit-survey">
+        <button type="submit" class="submit-survey">
             Submit Survey
         </button>
         </div>
