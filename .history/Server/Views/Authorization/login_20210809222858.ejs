@@ -28,7 +28,6 @@
             </button>
         </div>
       <% } %>
-      <br></br>
               <form id="loginForm" novalidate method="POST">
                 <div class="form-group">
                   <div class="input-group">
@@ -37,10 +36,11 @@
                       </i>
                     </span>
                     <input type="text" class="form-control" id="username" name="username"  required
-                    value="" placeholder="Enter your username">   
+                    value="" placeholder="Enter your username">
+               <br></br>   <br></br>
+                  
                   </div>
                 </div>
-                <br></br>
 
                 <div class="form-group">
                   <div class="input-group">
@@ -51,7 +51,7 @@
                     <input type="password" class="form-control" id="password" name="password"  required
                     value="" placeholder="Enter your password">
                   </div>
-                  <br></br>
+                 
                 </div>                                        
                 <div class="text-end mt-2">
                   <button id="loginButton" type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login</button>
@@ -60,7 +60,6 @@
               </form>
              
           </div>
-          <br></br>
           <p class="text-center text-muted small">
             Don't have an account? 
             <a href="/register">Register Here!</a>
