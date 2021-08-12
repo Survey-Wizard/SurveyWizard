@@ -1,0 +1,75 @@
+<%- include('../Partials/header/header.ejs'); %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--CSS Section-->
+    <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
+    <link rel='stylesheet' href='/Content/app.css' />
+       <script src= 
+"https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+                integrity= 
+"sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+                crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="row" id="login-row">
+    <div class="offset-md-3 col-md-6 col-sm-12">
+          <div class="login" id="contentArea">
+              <h1 class="display-4">Login</h1>
+           <% if(error === true) { %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="error-display">
+            Sign in Failed, please check Username and Password again.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      <% } %>
+              <form id="loginForm" novalidate method="POST">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="fa fa-user"> &nbsp;
+                      </i>
+                    </span>
+                    <input type="text" class="form-control" id="username" name="username"  required
+                    value="" placeholder="Enter your username">
+                  <br></br>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="fa fa-lock"> &nbsp;
+                      </i>
+                    </span>
+                    <input type="password" class="form-control" id="password" name="password"  required
+                    value="" placeholder="Enter your password">
+                  </div>
+                 
+                </div>                                        
+                <div class="text-end mt-2">
+                  <button id="loginButton" type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login</button>
+                  <button id="cancelButton" type="reset" class="btn btn-warning"><i class="fas fa-undo"></i> Cancel</button>
+                </div>
+              </form>
+             
+          </div>
+          <p class="text-center text-muted small">
+            Don't have an account? 
+            <a href="/register">Register Here!</a>
+          </p>
+    </div>
+</div>
+
+  <!--JavaScript Section-->
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/Scripts/app.js"></script>
+</body>
+</html>
+<%- include('../Partials/footer/footer.ejs'); %>
