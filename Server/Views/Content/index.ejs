@@ -19,10 +19,17 @@
 
 <body class="homePage-container">
 <div class="container" id="main-container">
+<header class="page-header">Welcome to Survey Wizard</header>
   <div class="row" id="container-row-top">
-    <div id="container-col">
-      <p class="line anim-typewritter"><%= textDisplay %></p>
-  
+    <div id="container-col-top">
+      <p class="line anim-typewritter"><%= textDisplay %>
+
+      </p>
+        <button class="pushable" id="typeWritter-btn">
+       <span class="front" >
+       Get Started
+        </span> 
+        </button>
     </div>
   </div>
   <div class="row1" id="container-row">
@@ -34,15 +41,15 @@
             <p class="title-text-bold"><b>Market Research</b></p>
              <p class="middle-text">Conduct market research quickly. </p>
              <p class="description">Expand your market research capabilities to keep track of your brand, test your ideas, or get a gut check with your target audience.</p>
-                     <button class="pushable">
+        <button class="pushable">
        <span class="front">
-       Learn More
-        </span>
+       Learn More 
+        </span> 
         </button>
         </div>
 
           <div class="right-side-container">
-          <img class="img-left" src="Assets/rightSide.jpg" alt="img" />
+          <img class="img-left" src="Assets/rightSide.jpg" alt="img" /> 
             <p class="title-text-bold"><b>Market Research</b></p>
              <p class="middle-text">Conduct market research quickly. </p>
              <p class="description">Expand your market research capabilities to keep track of your brand, test your ideas, or get a gut check with your target audience.</p>
@@ -55,7 +62,7 @@
     </div>
   </div>
     <div class="row" id="container-row">
-    <div  id="container-col">
+    <div class="bottom-container-col" id="container-col">
            <div class="left-side-container">
           <img class="img-large" src="Assets/bottomImg.png"  />
         </div>
@@ -73,11 +80,10 @@
     </div>
 </div>
 </div>
-
   <!--JavaScript Section-->
   <script src="/jquery/dist/jquery.min.js"></script>
       <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
   <script src="/Scripts/app.js"></script>
 </body>
-<%- include('../Partials/footer/footer.ejs'); %>
 </html>
+<%- include('../Partials/footer/footer.ejs'); %>

@@ -43,8 +43,8 @@
               name="title"
               required
             />
-
-            <select name="surveyType" id="cars">
+        <p class="date-text">Survey Type </p>
+            <select name="surveyType" id="selectType">
               <option></option>
               <option value="Community or volunteer Feedback">Community or volunteer Feedback</option>
               <option value="Customer Feedback">Customer Feedback</option>
@@ -52,38 +52,41 @@
               <option value="Employee Engagement">Employee Engagement</option>
             </select>
           </div>
-          <div class="form-group">
-            <p>Would you like your Survey to be public?</p>
+          <div class="survey-dates">
+          <p class="date-text">Please Select Start and End Date: </p>
+            <input type="text" id="html" name="startdate" placeholder="Start Date  (DD/MM/YYYY)" />
 
-            <input type="radio" id="html" name="publicValue" value="true" />
+            <input type="text" id="css" name="enddate" placeholder="End Date " />
+
+            </div>
+            <div class="form-group">
+            <p class="surveyFormat-text">Format Selected:</p>
+            <div class="surveyFormat-secondary-text">
+              <p>Classic</p>
+         
+              <p>Display all questions at once</p>
+          </div>
+     <div class="form-group">
+     <p>Would You like your survey to be public</p>
+     <div class="public-wrapper">
+        <input type="radio" id="html" name="publicValue" value="true" />
             <label for="html">Yes, Public</label>
             <input type="radio" id="css" name="publicValue" value="false" />
             <label for="css">No, Private</label>
+     </div>
           </div>
-          <div class="survey-dates">
-            <p>Please Select Start and End Date: </p>
-             <p>Format: MM/DD/YYY</p>
-            <input type="text" id="html" name="startdate" placeholder="Start Date" />
-
-            <input type="text" id="css" name="enddate" placeholder="End Date" />
-
-          </div>
-          <div class="form-group">
-            <p class="surveyFormat-text">Choose a format:</p>
-            <div class="survey-format">
-              <p class="surveyFormat-secondary-text">Classic</p>
-              <p class="surveyFormat-secondary-text">
-                Show all Survey questions on the page at once
-              </p>
-          </div>
-          
           <div class="createsurvey-btn-wrapper">
-            <button type="submit" class="create-survey"> Survey</button>
+        <!--  <button type="submit" class="create-survey"> Survey</button> -->
+                      <button class="pushable" id="createSurvey-btn">
+       <span class="front" >
+       + Create Survey
+        </span> 
+        </button>
           </div>
         </form>
       </div>
       </div>
-  
+
     </div>
   </body>
 </html>

@@ -18,16 +18,15 @@
 
     </head>
 
-    <body>
-        <table class="table" id="table-container">
+    <body >
+    <div  id="mySurvey-body">
+        <table class="table table-bordered table-striped table-hover" id="table-container-mySurveys">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Expires In</th>
                     <th scope="col">Responces</th>
-                    <th scope="col">Collect</th>
-                    <th scope="col">Analyze</th>
                     <th scope="col">Share</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
@@ -45,10 +44,8 @@
                         days
                         </td>
                         <td class="text-center">
-                            <%= survey[count].respones %>
+                            <%= survey[count].responses %>
                         </td>
-                        <td class="text-center">COllect results</td>
-                        <td class="text-center"><button>Analyize</button></td>
                         <td class="text-center"><button>Share</button></td>
                         <td class="text-center"><a href="/survey/edit/<%= survey[count]._id %>" class="btn btn-primary btn-sm edit"> Edit</a></td>
 
@@ -58,14 +55,19 @@
             </tbody>
         </table>
         <div class="button-container">
-            <button class="create-survey-btn"> + Create Survey </button>
+              <button class="pushable" id="create-survey-btn">
+       <span class="front" >
+       + Create Survey
+        </span> 
+        </button>
         </div>
+    </body>
 
-        <!--JavaScript Section-->
+          <!--JavaScript Section-->
         <script src="/jquery/dist/jquery.min.js"></script>
         <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="/Scripts/app.js"></script>
-    </body>
 
+    </div>
     </html>
-    <%- include('../Partials/footer/footer.ejs'); %>
+ <%- include('../Partials/footer/footer.ejs'); %>

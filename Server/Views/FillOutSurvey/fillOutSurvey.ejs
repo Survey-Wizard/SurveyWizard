@@ -15,42 +15,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@200&display=swap" rel="stylesheet">
 
     </head>
-    <body>
+    <body class="body-container">
 <div class="container" id="complete-survey-container">
-<header class="surveytitle"> Survey Title Goes Here</header>        
+<header class="surveytitle"> <%= surveyTitle%> </header>        
 <div class="row" id="question-container1">
-<form action="/fillOutSurvey/:id" method="post"  id="create-question">
+<form action="/fillOutSurvey/:id" method="post"  id="answer-question">
+
 <% completeSurveyQuestions.forEach(function(element) { %>
-      <div class="row" id="question-container">
+      <div id="question-container">
     <div class="col">
       <%= element[0] %>
     </div> 
    <div class="col">
-    <% switch (element[1]) {
-case 'Text-Box' : %>
+    <% switch (element[1]) { case 'Text-Box' : %>
   <fieldset>
            <input type="text" class="textbox" name="textBox" placeholder="Answer" id="y" />
   </fieldset>
-        <% break;
-
-case 'Radio-Buttons' : %>
+        <% break; case 'Radio-Buttons' : %>
     <fieldset>
       <div class="some-class">
-        <input type="radio" class="radio" name="radio" value="Strongly agree" id="y" />
+        <input type="radio" class="radio" name="radio" value="Strongly agree" id="radio1" />
         <label for="y">Radio 1 </label>
-        <input type="radio" class="radio" name="radio" value="Agree" id="z" />
+        <input type="radio" class="radio" name="radio" value="Agree" id="radio2" />
         <label for="z">Radio 2</label>
-        <input type="radio" class="radio" name="radio" value="Neither agree nor disagree" id="y" />
+        <input type="radio" class="radio" name="radio" value="Neither agree nor disagree" id="radio3"  />
         <label for="y">Radio 1</label>
-        <input type="radio" class="radio" name="radio" value="Disagree" id="z" />
+        <input type="radio" class="radio" name="radio" value="Disagree" id="radio4" />
         <label for="z">Radio 2</label>
-        <input type="radio" class="radio" name="radio" value="Strongly disagree" id="z" />
+        <input type="radio" class="radio" name="radio" value="Strongly disagree" id="radio5" />
         <label for="z">Radio 2</label>
       </div>
     </fieldset>
-        <% break;
-
-case 'Multiple-Choice' : %>
+        <% break; case 'Multiple-Choice' : %>
             <fieldset>
       <div class="some-class">
         <input type="checkbox" class="radio" name="multiSelect" value="Not at all" id="y" />
@@ -65,32 +61,29 @@ case 'Multiple-Choice' : %>
         <label for="z">Answer 2</label>
       </div>
         </fieldset>
-        <% break;
-
- case 'Star-Rating' : %>
+        <% break; case 'Star-Rating' : %>
         <div class="rate">
-    <input type="radio" id="star5" name="rate" value="5-star" />
+    <input type="radio" id="star" name="rate" value="5-star" />
     <label for="star5" title="text">5 stars</label>
-    <input type="radio" id="star4" name="rate" value="4-star" />
+    <input type="radio" id="star" name="rate" value="4-star" />
     <label for="star4" title="text">4 stars</label>
-    <input type="radio" id="star3" name="rate" value="3-star" />
+    <input type="radio" id="star" name="rate" value="3-star" />
     <label for="star3" title="text">3 stars</label>
-    <input type="radio" id="star2" name="rate" value="2-star" />
+    <input type="radio" id="star" name="rate" value="2-star" />
     <label for="star2" title="text">2 stars</label>
-    <input type="radio" id="star1" name="rate" value="1-star" />
+    <input type="radio" id="star" name="rate" value="1-star" />
     <label for="star1" title="text">1 star</label>
         </div>
-        <% break;
-} %>
+        <% break; } %>
     </div> 
     </div>
  <% }) %> 
-
-
- 
      <div class="complete-btn">
-        <button type="submit" class="submit-survey">
-            Submit Survey
+    
+              <button type="submit" class="pushable" id="submitSurvey-btn">
+       <span class="front" >
+          Submit Survey
+        </span> 
         </button>
         </div>
         </div>

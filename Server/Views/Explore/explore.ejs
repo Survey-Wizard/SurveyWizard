@@ -18,20 +18,19 @@
 
 
   <body>
-     <h1>These are the Active Forms</h1>
-    
- <div class="container">
-      <div class="row">
-        <div class="col-md-offset-1 col-md-10">
-          <h3> Survey List </h3>
+ <div class="container" id="table-container">
+      <div class="row" id="table-row">
+        <div >
+          <h3 class="active-survey"> Active Surveys  </h3>
+          <p class="secondaryText">Other members surveys that are avaliable to complete.</p>
           <br>
           <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
+            <table class="table table-bordered table-striped table-hover" id="surveyComplete-table">
               <thead>
                 <tr>
                   <th>Title</th>
-                  <th class="text-center">#</th>
-                  <th class="text-center">Enpire time </th>
+                  <th class="text-center">Survey Category</th>
+                  <th class="text-center">Expire time </th>
                     <th class="text-center"> Surveys Complete</th>
                   <th class="text-center">Take Survey</th>
                 </tr>
@@ -39,15 +38,16 @@
                 <tbody>
                   <% for(let count=0; count < publicSurveys.length; count++) { %>
                     <tr>
-                        <th scope="row">Title</th>
+                        <th scope="row"><%= publicSurveys[count].surveyName %></th>
                         <td>
-                           number
+                          <%= publicSurveys[count].surveyCategory %>
                         </td>
                           <td class="text-center">
-                      expire time
+                       <%= ( publicSurveys[count].timeLeft / (1000*60*60*24)) %>
+                        days
                         </td>
                            <td class="text-center">
-                      6
+                     <%= publicSurveys[count].responses %>
                         </td>
                         <td class="text-center">
                         <a href="/fillOutSurvey/<%=publicSurveys[count]._id %>" class="btn btn-primary btn-sm edit"> Compelte Survey</a>

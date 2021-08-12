@@ -26,7 +26,6 @@ router.get("/", (req, res, next) => {
     let array = ["Are my customers happy?", "Are my customers actually satistified", "Are my employees happy at work", "do people like attending my events", "Do customers like our prodect?"];
     setInterval(function () {
         num = Math.floor(Math.random() * 5);
-        console.log(num);
     }, 4000);
     function shuffle(value) {
         console.log(value);
@@ -132,11 +131,13 @@ router.get("/fillOutSurvey/:id", (req, res, next) => __awaiter(void 0, void 0, v
     console.log("Completeing Survey");
     let completeSurvey = yield survey_1.default.findById(id);
     let completeSurveyQuestions = completeSurvey.questions;
+    let surveyTitle = completeSurvey.surveyName;
     console.log("complete survey Questions", completeSurveyQuestions);
     res.render("../Views/FillOutSurvey/fillOutSurvey.ejs", {
         displayName: Util_1.UserDisplayName(req),
         currentUser: currentUser,
-        completeSurveyQuestions: completeSurveyQuestions
+        completeSurveyQuestions: completeSurveyQuestions,
+        surveyTitle: surveyTitle
     });
 }));
 router.get("/survey/edit/:id", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

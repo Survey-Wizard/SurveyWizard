@@ -6,25 +6,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--CSS Section-->
-    <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
-    <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
-    <link rel='stylesheet' href='/Content/app.css' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@200&display=swap" rel="stylesheet">
+
+  <!--CSS Section-->
+  <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
+  <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
+  <link rel='stylesheet' href='/Content/app.css' />
        <script src= 
 "https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
                 integrity= 
 "sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
                 crossorigin="anonymous"></script>
+<style>
+  .navbar-toggler-icon {
+    display: none;
+  }
+  .navbar-toggler {
+    display: none;
+  }
+</style>
+
 </head>
 <body>
 <div class="row" id="login-row">
-    <div class="offset-md-3 col-md-6 col-sm-12">
+    <div id="login-container-wrapper" >
           <div class="login" id="contentArea">
-              <h1 class="display-4">Login</h1>
+              <h1 class="display-4" id="login-title">Login</h1>
            <% if(error === true) { %>
         <div class="alert alert-warning alert-dismissible fade show" role="alert" id="error-display">
             Sign in Failed, please check Username and Password again.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="close-btn">
+            <span aria-hidden="true" id="close-btn">&times;</span>
             </button>
         </div>
       <% } %>
@@ -33,7 +47,11 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon">
+<<<<<<< Updated upstream
                       <i class="fa fa-user"> &nbsp;
+=======
+                      <i class="fa fa-user" id="userIcon">
+>>>>>>> Stashed changes
                       </i>
                     </span>
                     <input type="text" class="form-control" id="username" name="username"  required
@@ -45,7 +63,11 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon">
+<<<<<<< Updated upstream
                       <i class="fa fa-lock"> &nbsp;
+=======
+                      <i class="fa fa-lock" id="passwordIcon">
+>>>>>>> Stashed changes
                       </i>
                     </span>
                     <input type="password" class="form-control" id="password" name="password"  required
@@ -53,22 +75,26 @@
                   </div>
                   <br></br>
                 </div>                                        
-                <div class="text-end mt-2">
+                <div class="text-end mt-2" id="button-container">
                   <button id="loginButton" type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login</button>
                   <button id="cancelButton" type="reset" class="btn btn-warning"><i class="fas fa-undo"></i> Cancel</button>
                 </div>
               </form>
              
           </div>
+<<<<<<< Updated upstream
           <br></br>
           <p class="text-center text-muted small">
+=======
+          <p class="text-center text-muted small" id="registerUser">
+>>>>>>> Stashed changes
             Don't have an account? 
             <a href="/register">Register Here!</a>
           </p>
     </div>
 </div>
 
-  <!--JavaScript Section-->
+   <!--JavaScript Section-->
     <script src="/jquery/dist/jquery.min.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/Scripts/app.js"></script>
