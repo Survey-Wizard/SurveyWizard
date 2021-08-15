@@ -77,20 +77,15 @@
         <p class="image-text">Know the score with your customers
         Keep a competitive edge by truly understanding the voice of your customers. Customer satisfaction surveys help you connect at multiple touchpoints to find out exactly what your customers want, need, and expect.
         </p>
-        
+        <% if(displayName) { %>
       <button class="pushable">
        <span class="front">
-       <% if(displayName) { %>
        <a href='createSurvey'>
           Create Survey
           </a>
-          <% } else {%>
-          Create Survey
-          <% }%>
-
         </span>
         </button>
-        
+        <% }%>
         </div>
     </div>
 </div>

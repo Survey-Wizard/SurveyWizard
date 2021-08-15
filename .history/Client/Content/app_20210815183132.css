@@ -638,7 +638,7 @@ label {
     margin-right: 50px;
 }
 .pushable {
-    background: hsl(51deg 100% 32%);
+    background: hsl(47deg 100% 32%);
     border-radius: 12px;
     border: none;
     padding: 0;
@@ -650,7 +650,7 @@ label {
     padding: 10px 20px;
     border-radius: 12px;
     font-size: 15px;
-    background: hsl(55deg 100% 47%);
+    background: hsl(70deg 100% 47%);
     color: white;
     transform: translateY(-6px);
   }
