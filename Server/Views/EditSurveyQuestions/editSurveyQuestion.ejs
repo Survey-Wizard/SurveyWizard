@@ -22,7 +22,7 @@
     <form class="form" method="post" id="editBook-form">
     <div class="surveyTitle-container">
       <form action="/createSurvey" method="post">
-          <div class="form-group">
+          <div class="form-group" id="topForm-group">
             <input
               type="text"
               class="form-control"
@@ -32,7 +32,7 @@
               required
             />
 
-            <select name="surveyType" id="cars">
+            <select name="surveyType" id="surveyCategorys">
               <option value="Survey Category">Survey Category</option>
               <option value="Community or volunteer Feedback">Community or volunteer Feedback</option>
               <option value="Customer Feedback">Customer Feedback</option>
@@ -40,20 +40,12 @@
               <option value="Employee Engagement">Employee Engagement</option>
             </select>
           </div>
-          <div class="form-group">
-            <p>Would you like your Survey to be public?</p>
 
-            <input type="radio" id="html" name="publicValue" value="true" />
-            <label for="html">Yes, Public</label>
-            <input type="radio" id="css" name="publicValue" value="false" />
-            <label for="css">No, Private</label>
-          </div>
         </form>
-    
     </div>
     </div>
     <% surveyQuestions.map((question, index) => { %>
-     
+    <div class="editQuestion-container">
   <h2 class='question-number'>Question <%= index + 1 %></h2>
       <input class='question-box' name="questonTitle" placeholder="<%=question[0] %>"/>
       
@@ -64,12 +56,13 @@
       <option value='Text-Box'>Text Box</option> 
       <option value='Star-Rating'>Star Rating</option>
       </select>
-
+    </div>
    <% }) %>
     <div class="submit-edit">
-      <button type="submit">Edit Survey</button>
+      <button type="submit" id="editSurvey-btn">Edit Survey</button>
     </div>
     </form>
+    </div>
     </div>
   </body>
 

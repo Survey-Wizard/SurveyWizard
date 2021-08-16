@@ -12,22 +12,33 @@
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
    
 }
-.navbar-collapse {
- 
+
+.socials {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
 }
 .instagram {
+    background-image: url('../Assets/instagram-new.png');
+    background-size: contain;
     width: 40px;
     height: 40px;
 }
 .twitter {
+    background-image: url('../Assets/Twitter-Emblem.png');
+    background-size: contain;
     width: 60px;
     height: 30px;
 }
 .facebook {
+    background-image: url('../Assets/Facebook-logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
     width: 40px;
     height: 40px;
 }
 .linkedIn {
+    background-image: url('../Assets/reddit-logo.png');
+    background-size: contain;
     width: 40px;
     height: 40px;
 }
@@ -316,6 +327,12 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+#surveyCategorys {
+    background-color: #444444;
+    padding: 5px;
+    color: whitesmoke;
+
+}
 /* create survey page */
 #NameTextField {
     width: 50%;
@@ -396,6 +413,17 @@ padding: 10px;
     background-color: #312f2f;
     border-radius: 5px;
     margin-right: 5px;
+    width: 20%;
+    padding: 5px;
+    color: whitesmoke;
+}
+#topForm-group {
+    background-color: #353535;
+    border-radius: 10px;
+    padding: 10px;
+}
+#NameTextField {
+    background-color: #435058;
     color: whitesmoke;
 }
 #SubmitSurveyQuestions {
@@ -408,6 +436,7 @@ padding: 10px;
     background-color: #312f2f;
     border-radius: 5px;
     margin-right: 5px;
+    width: 40%;
     color: whitesmoke;
 }
 /* survey editor / create question */
@@ -438,6 +467,18 @@ padding: 10px;
     padding: 10px;
     display: grid;
     grid-template-columns: auto auto auto;
+}
+
+#header-img {
+  
+    background-image: url('../Assets/logo.png');
+    background-size: contain;
+    margin-left: 20px;
+    width: 140px;
+    height: 60px;
+    margin-top: -5px;
+    background-repeat: no-repeat;
+  
 }
 .addNewQuestion {
     padding: 10px;
@@ -503,16 +544,29 @@ padding: 10px;
 #createSurvey-btn {
     position: relative;
     margin-left: auto;
+    width: 20%;
     margin-right: auto;
 }
 
 /* edit surveyPage */
-
+#editSurvey-btn {
+    background-color: #023e8a;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    width: 20%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
 #editQuestions-container {
     
-}
-#editQuestions-row {
+    text-align: center;
+    padding: 20px;
 
+}
+
+.question-number {
+    margin-top: 5px;
 }
 
 
@@ -645,6 +699,11 @@ label {
     cursor: pointer;
     outline-offset: 4px;
   }
+  #createSurveyButtonSpan {
+      width: 20%;
+      margin-left: auto;
+      margin-right: auto;
+  }
   .front {
     display: block;
     padding: 10px 20px;
@@ -703,6 +762,19 @@ label {
     width: auto;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     height: fit-content;
+}
+.editQuestion-container {
+    border: 1px solid black;
+    border-radius: 5px;
+    color: whitesmoke;
+     background-color: #7a00cc ;
+   -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+   animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    padding: 10px;
+    margin-top: 10px;
+    
+    border-radius: 10px;
 }
 
 @media screen and (max-width: 917px ) {
