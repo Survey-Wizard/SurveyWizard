@@ -6,10 +6,12 @@
     display: grid !important;
     width: 60%;
     grid-template-columns: 100px 150px auto;
-    
+    margin-left: 0;
 }
 
-
+#navbarSupportedContent{
+    
+}
 
 #navBar-container {
     background-color: #4CC9F0;
