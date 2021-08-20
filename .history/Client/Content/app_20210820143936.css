@@ -3,7 +3,7 @@
 .navbar-nav {
   
     color: white;
-    display: grid !important;
+    
     width: 60%;
     grid-template-columns: 100px 150px auto;
 }

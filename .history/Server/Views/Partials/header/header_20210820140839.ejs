@@ -33,7 +33,7 @@
         <ul class="navbar-nav ">
           <li class="nav-item active">
             <a class="nav-link" href="/explorePage">
-            Explore <span class="visually-hidden">(current)</span>
+            Explore <span class="sr-only">(current)</span>
             </a>
           </li>
           <% if(displayName) { %>
@@ -41,13 +41,11 @@
             <a class="nav-link" href="/mySurveys">My Surveys</a>
           </li>
           <li class="nav-item dropdown">
-          <div button-container>
           <button  class="createSurvey-btn">
             <a id="createSurvey-atag" href="/createSurvey">
             + create survey
           </a>
           </button>
-          </div>
          
           </li>
           <% } %>
@@ -61,7 +59,7 @@
                 <%= currentUser %>
               </button>
             <div class="dropdown-menu">
-            <button class="dropdown-item" type="button"><a  href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></button>
+            <button class="dropdown-item" type="button"><a class="nav-link " aria-current="true" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></button>
             </div>
           </div>
            <% } else { %> 
